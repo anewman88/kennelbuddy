@@ -2,30 +2,30 @@ import React from "react";
 //import "./style.css";
 import {Row, Col} from "../Grid"
 
-const SearchResult = props => {
-    return (props.books.length === 0) ? (
+const DisplayDevices = props => {
+    return (props.devices.length === 0) ? (
         <div className="card">
-            <div className="card-body player">
-                <div className="article">
-                    <h3>Search Results</h3>
+            <div className="card-body">
+                <div className="device">
+                    <h3>Active Devices</h3>
                 </div>
             </div>
         </div>
     ) : (
             <div className="card">
-                <div className="card-body player">
-                    <div className="article">
-                        <h3>Search Results</h3>
-                        {props.books.map(book => {
+                <div className="card-body">
+                    <div className="device">
+                        <h3>Active Devices</h3>
+                        {props.devices.map(device => {
                             return (
                                 <li className="search-list list-group-item">
-                                    <Row className="SearchResult row" id={book.title + "Card"} key={book._id}>
-                                        {/* col-3 show image of the book */}
-                                        <Col size="2" className="bookImage">
-                                            <img src={book.image} alt={book.title} />
+                                    <Row className="DisplayDevices row" id={device.DeviceID + "Card"} key={device._id}>
+                                        {/* col-3 show image of the pet */}
+                                        <Col size="2" className="petImage">
+                                            <img src={device.PetImage} alt={device.PetName} />
                                         </Col>
                                         <Col size="1" className="emptyCol"/>
-                                        {/* col-9 show information of the book */}
+                                        {/* col-9 show information of the pet */}
                                         <Col size="9" className="bookInfo">
                                             <Row>
                                                 <Col size="10">
@@ -59,4 +59,4 @@ const SearchResult = props => {
             </div>
         )
 }
-export default SearchResult
+export default DisplayDevices

@@ -2,28 +2,27 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import Jumbotron from "../components/Jumbotron";
 import { Container} from "../components/Grid";
-import SavedResult from "../components/SavedResult"
 
-class SaveBook extends Component {
+class AdminPage extends Component {
     state = {
-        savedBooksList: []
+        ActiveDevicesList: []
     };
 
-    //when this component mounts, grab all books that were save to the database 
+    //when this component mounts, get a list of all the active Devices 
     componentDidMount() {
-        this.loadBooks();
+        this.loadDevices();
     }
 
-    loadBooks = () => {
-        API.getSavedBooks()
-            .then(res => this.setState({ savedBooksList: res.data }))
+    loadDevices = () => {
+        API.getDevices()
+            .then(res => this.setState({ ActiveDevicesList: res.data }))
             .catch(err => console.log(err))
     }
 
-    //function to remove book by id
+    //function to remove Device by id
     handleDeleteButton = id => {
-        API.deleteBook(id)
-            .then(res => this.loadBooks())
+        API.deleteDevice(id)
+            .then(res => this.loadDevices())
             .catch(err => console.log(err))
     }
 
@@ -31,17 +30,14 @@ class SaveBook extends Component {
         return (
             <Container fluid className="container">
                 <Jumbotron>
-                    <h1 className="text-white">React Based Google Books Search</h1>
-                    <h3 className="text-white">These are your favorite saved books!</h3>
-                    <hr/>
+                    <h1 className="text-white">Admin Page</h1>
                 </Jumbotron>
-
                 <Container>
-                    <SavedResult savedBooksList={this.state.savedBooksList} handleDeleteButton={this.handleDeleteButton} />
+                    <DisplayDevices ActiveDeviceList={this.state.ActiveDeviceList} handleDeleteButton={this.handleDeleteButton} />
                 </Container>
             </Container>
         )
     }
 }
 
-export default SaveBook 
+export default AdminPage

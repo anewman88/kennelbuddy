@@ -36,7 +36,12 @@ class CreateUser extends Component {
       event.preventDefault();
       // Verify that the required fields are filled
       // Check that they do not equal "*"  ????
-
+      
+      // write the user information to the database
+      let NewUser = this. 
+      API.saveBook(savedBooks)
+          .then(this.setState({ message: alert("Your book is saved") }))
+          .catch(err => console.log(err))
     }
 
     ChangeHandler = (event) => {
@@ -49,7 +54,7 @@ class CreateUser extends Component {
       return (
         <Container fluid>
             <Jumbotron>
-            <h1 className="text-white">Input User Data</h1>
+            <h1 className="text-white">Create User Page</h1>
             <h3 className="text-white">Fields marked with an * are required</h3>
             </Jumbotron>
             <Container>
