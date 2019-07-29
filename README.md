@@ -1,2 +1,1 @@
-# kennelbuddy
-Project 3 - Kennel Buddy
+# kb_test
