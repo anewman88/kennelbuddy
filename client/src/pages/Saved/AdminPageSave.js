@@ -9,16 +9,15 @@ class AdminPage extends Component {
     };
 
     //when this component mounts, get a list of all the active Devices 
+    componentDidMount() {
+        this.loadDevices();
+    }
 
-    // componentDidMount() {
-    //     this.loadDevices();
-    // }
-
-    // loadDevices = () => {
-    //     API.getDevices()
-    //         .then(res => this.setState({ ActiveDevicesList: res.data }))
-    //         .catch(err => console.log(err))
-    // }
+    loadDevices = () => {
+        API.getDevices()
+            .then(res => this.setState({ ActiveDevicesList: res.data }))
+            .catch(err => console.log(err))
+    }
 
     //function to remove Device by id
     handleDeleteButton = id => {

@@ -38,9 +38,10 @@ class CreateUser extends Component {
       // Check that they do not equal "*"  ????
       
       // write the user information to the database
-      // API.createUser(userInfo)
-      //     .then(this.setState({ message: alert("Your user info is saved") }))
-      //     .catch(err => console.log(err))
+      let NewUser = this. 
+      API.saveBook(savedBooks)
+          .then(this.setState({ message: alert("Your book is saved") }))
+          .catch(err => console.log(err))
     }
 
     ChangeHandler = (event) => {

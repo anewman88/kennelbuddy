@@ -14,6 +14,7 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path="/" component={HomePage} />
+          {/* <Route exact path="/userlogin/:id" component={UserPage} /> */}
           <Route exact path="/userlogin/" component={UserPage} />
           <Route exact path="/createuser/" component={CreateUser} />
           <Route exact path="/adminlogin/" component={AdminPage} />

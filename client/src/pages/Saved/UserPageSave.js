@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
-//import UserInfo from "../components/UserInfo";
-//import AddDevice from "../components/AddDevice";
-//import DisplayDevice from "../components/DisplayDevices";
+import UserInfo from "../components/UserInfo";
+import AddDevice from "../components/AddDevice";
+import DisplayDevice from "../components/DisplayDevices";
 
 const DebugOn = true;
 
@@ -34,10 +34,8 @@ class UserPage extends Component {
                 <h1 className="text-white">User Page</h1>
               </Jumbotron>
               <Container>
-                  <p>Put user info here</p>
-              </Container>
-              <Container>
-                  <p>Put device info here</p>
+                  {/* <DisplayUserInfo />
+                  <DisplayDevices ActiveDeviceList={this.state.ActiveDeviceList} handleDeleteButton={this.handleDeleteButton} /> */}
               </Container>
           </Container>
       )

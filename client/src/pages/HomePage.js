@@ -19,8 +19,8 @@ class HomePage extends Component {
       return (
           <Container fluid>
               <div>
-                  <h1 className="text-white">Welcome to Kennel Buddy</h1>
-                  <h3 className="text-white">Your best friend's travel monitor</h3>
+                  <h1 className="text-center">Welcome to Kennel Buddy</h1>
+                  <h3 className="text-center">Your best friend's digital traveling companion</h3>
               </div>
 
               <Jumbotron />
@@ -28,6 +28,7 @@ class HomePage extends Component {
               <nav className="navbar navbar-default sticky-top justify-content-center bg-light">
                 <a className="nav-link" href="/userlogin"><button type="button" className="btn btn-info text-white">User Login</button></a>
                 <a className="nav-link" href="/createuser"><button type="button" className="btn btn-danger text-white">Create Account</button></a>
+                <a className="nav-link" href="/adminlogin"><button type="button" className="btn btn-danger text-white">Admin Login</button></a>
                 <a className="nav-link" href="/adminlogin"><button type="button" className="btn btn-danger text-white">Admin Login</button></a>
               </nav>
               <Container>

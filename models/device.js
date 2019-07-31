@@ -1,15 +1,24 @@
-var mongoose = require("mongoose");
+// Use mongoose ORM for mongoDB
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-// Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
-
-// Using the Schema constructor, create a new TemperatureSchema object
-var TemperatureSchema = new Schema({
-  Value: Number
+// Using the Schema constructor, create a new DeviceSchema object
+var DeviceSchema = new Schema({
+  UserID: {type:String, required:true},
+  PetName: {type: String},
+  PetImage: {type: String},
+  DeviceID: {type: String},
+  DeviceOnline: Boolean,
+  Upper_Temp: {type: Number},
+  Lower_Temp: {type: Number},
+  Interval: {type: Number},
+  Temp: [{
+         Value: Number,
+         Time: Date 
+        }]
 });
 
-// This creates our model from the above schema, using mongoose's model method
-var Temperature = mongoose.model("Temperature", TemperatureSchema);
+const Device = mongoose.model("Device", DeviceSchema);
 
-// Export the Temperature model
-module.exports = Temperature;
+// Export the Device model
+module.exports = Device;

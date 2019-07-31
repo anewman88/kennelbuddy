@@ -13,6 +13,7 @@ const UserForm = props => {
                         type="text"
                         name="Name"
                         placeholder="Full Name *"
+                        required
                         onChange={props.handleInputChange}
                     />
                 </div>
@@ -20,10 +21,10 @@ const UserForm = props => {
               <Col size="6">
                 <div className="form-group">
                     <input className="form-control"
-                        value={props.EC_Name}
+                        value={props.PetName}
                         type="text"
-                        name="EC_Name"
-                        placeholder="Emergency Contact Name *"
+                        name="PetName"
+                        placeholder="Pet's Name *"
                         onChange={props.handleInputChange}
                     />
                 </div>
@@ -45,10 +46,10 @@ const UserForm = props => {
               <Col size="6">
                 <div className="form-group">
                     <input className="form-control"
-                        value={props.EC_Phone}
-                        type="text"
-                        name="EC_Phone"
-                        placeholder="Emergency Contact Phone *"
+                        value={props.PetImage}
+                        type="file"
+                        name="PetImage"
+                        placeholder="Pet's Image *"
                         onChange={props.handleInputChange}
                     />
                 </div>
@@ -81,77 +82,13 @@ const UserForm = props => {
                     />
                 </div>
               </Col>
-              <Col size="1">
+              <Col size="2">
                 <div className="form-group">
                     <input className="form-control"
                         value={props.State}
                         type="text"
                         name="State"
                         placeholder="State *"
-                        onChange={props.handleInputChange}
-                    />
-                </div>
-              </Col>
-              <Col size="6">
-                <div className="form-group">
-                    <input className="form-control"
-                        value={props.PetName}
-                        type="text"
-                        name="PetName"
-                        placeholder="Pet's Name *"
-                        onChange={props.handleInputChange}
-                    />
-                </div>
-              </Col>
-          </Row>
-
-          <Row>
-              <Col size="6">
-                <div className="form-group">
-                    <input className="form-control"
-                        value={props.Zip}
-                        type="text"
-                        name="Zip"
-                        placeholder="ZIP Code *"
-                        onChange={props.handleInputChange}
-                    />
-                </div>
-              </Col>
-              <Col size="6">
-                <div className="form-group">
-                    <input className="form-control"
-                        value={props.PetImage}
-                        type="file"
-                        name="PetImage"
-                        placeholder="Pet's Image *"
-                        onChange={props.handleInputChange}
-                    />
-                </div>
-              </Col>
-          </Row>
-
-          <Row>
-              <Col size="6">
-                <div className="form-group">
-                    <input className="form-control"
-                        value={props.Email}
-                        type="email"
-                        name="Email"
-                        placeholder="Email Address *"
-                        onChange={props.handleInputChange}
-                    />
-                </div>
-              </Col>
-          </Row>
-
-          <Row>
-              <Col size="6">
-                <div className="form-group">
-                    <input className="form-control"
-                        value={props.Comment}
-                        type="text"
-                        name="Comment"
-                        placeholder="Comment or Instructions"
                         onChange={props.handleInputChange}
                     />
                 </div>
@@ -168,8 +105,29 @@ const UserForm = props => {
                 </div>
               </Col>
           </Row>
+
           <Row>
-              <Col size="6">
+              <Col size="2">
+                <div className="form-group">
+                    <input className="form-control"
+                        value={props.Zip}
+                        type="text"
+                        name="Zip"
+                        placeholder="ZIP Code *"
+                        onChange={props.handleInputChange}
+                    />
+                </div>
+              </Col>
+              <Col size="4">
+                <div className="form-group">
+                    <input className="form-control"
+                        value={props.Email}
+                        type="email"
+                        name="Email"
+                        placeholder="Email Address *"
+                        onChange={props.handleInputChange}
+                    />
+                </div>
               </Col>
               <Col size="3">
                 <div className="form-group">
@@ -196,7 +154,27 @@ const UserForm = props => {
           </Row>
 
           <Row>
-              <Col size="6">
+              <Col size="3">
+                <div className="form-group">
+                    <input className="form-control"
+                        value={props.Phone1}
+                        type="tel"
+                        name="Phone1"
+                        placeholder="Cell Phone *"
+                        onChange={props.handleInputChange}
+                    />
+                </div>
+              </Col>
+              <Col size="3">
+                <div className="form-group">
+                    <input className="form-control"
+                        value={props.Phone2}
+                        type="tel"
+                        name="Phone2"
+                        placeholder="Alt Phone *"
+                        onChange={props.handleInputChange}
+                    />
+                </div>
               </Col>
               <Col size="6">
                 <div className="form-group">
@@ -209,6 +187,57 @@ const UserForm = props => {
                     />
                 </div>
               </Col>
+          </Row>
+          <Row>
+             <Col size="6">
+                <div className="form-group">
+                    <input className="form-control"
+                        value={props.EC_Name}
+                        type="text"
+                        name="EC_Name"
+                        placeholder="Emergency Contact Name *"
+                        onChange={props.handleInputChange}
+                    />
+                </div>
+              </Col>
+          </Row>
+          <Row>
+             <Col size="3">
+                <div className="form-group">
+                    <input className="form-control"
+                        value={props.EC_Phone1}
+                        type="text"
+                        name="EC_Phone1"
+                        placeholder="EC Phone *"
+                        onChange={props.handleInputChange}
+                    />
+                </div>
+              </Col>
+              <Col size="3">
+                <div className="form-group">
+                    <input className="form-control"
+                        value={props.EC_Phone2}
+                        type="text"
+                        name="EC_Phone2"
+                        placeholder="EC Alt Phone"
+                        onChange={props.handleInputChange}
+                    />
+                </div>
+              </Col>
+              <Col size="6">
+                <div className="form-group">
+                    <input className="form-control"
+                        value={props.Comment}
+                        type="text"
+                        name="Comment"
+                        placeholder="Comments or Instructions"
+                        onChange={props.handleInputChange}
+                    />
+                </div>
+              </Col>
+          </Row>
+
+          <Row>
           </Row>
 
           <Row>

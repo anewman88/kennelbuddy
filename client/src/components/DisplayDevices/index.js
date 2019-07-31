@@ -26,12 +26,12 @@ const DisplayDevices = props => {
                                         </Col>
                                         <Col size="1" className="emptyCol"/>
                                         {/* col-9 show information of the pet */}
-                                        <Col size="9" className="bookInfo">
+                                        <Col size="9" className="petInfo">
                                             <Row>
                                                 <Col size="10">
-                                                    <a className="book" href={book.link} target="_blank" class="text-info">
-                                                        <div className="book-title white-text">
-                                                                <h3>{book.title}</h3>
+                                                    <a className="device" href={device.link} target="_blank" class="text-info">
+                                                        <div className="device-title white-text">
+                                                                <h3>{device.title}</h3>
                                                             </div>
                                                     </a>
                                                 </Col>
