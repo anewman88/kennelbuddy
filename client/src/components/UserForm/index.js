@@ -14,7 +14,7 @@ const UserForm = props => {
                         name="Name"
                         placeholder="Full Name *"
                         required
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -25,7 +25,7 @@ const UserForm = props => {
                         type="text"
                         name="PetName"
                         placeholder="Pet's Name *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -39,7 +39,7 @@ const UserForm = props => {
                         type="text"
                         name="Address1"
                         placeholder="Street Address *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -50,7 +50,7 @@ const UserForm = props => {
                         type="file"
                         name="PetImage"
                         placeholder="Pet's Image *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -64,7 +64,7 @@ const UserForm = props => {
                         type="text"
                         name="Address2"
                         placeholder="Street Address (optional)"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -78,7 +78,7 @@ const UserForm = props => {
                         type="text"
                         name="City"
                         placeholder="City *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -89,7 +89,7 @@ const UserForm = props => {
                         type="text"
                         name="State"
                         placeholder="State *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -100,7 +100,7 @@ const UserForm = props => {
                         type="text"
                         name="DeviceID"
                         placeholder="Device ID *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -114,7 +114,7 @@ const UserForm = props => {
                         type="text"
                         name="Zip"
                         placeholder="ZIP Code *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -125,7 +125,7 @@ const UserForm = props => {
                         type="email"
                         name="Email"
                         placeholder="Email Address *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -136,7 +136,7 @@ const UserForm = props => {
                         type="number"
                         name="Upper_Temp"
                         placeholder="Upper Temp Limit (deg F) *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -147,7 +147,7 @@ const UserForm = props => {
                         type="number"
                         name="Lower_Temp"
                         placeholder="Lower Temp Limit (deg F) *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -161,7 +161,7 @@ const UserForm = props => {
                         type="tel"
                         name="Phone1"
                         placeholder="Cell Phone *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -172,7 +172,7 @@ const UserForm = props => {
                         type="tel"
                         name="Phone2"
                         placeholder="Alt Phone *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -183,7 +183,7 @@ const UserForm = props => {
                         type="number"
                         name="Interval"
                         placeholder="Sample Interval (in seconds) *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -196,7 +196,7 @@ const UserForm = props => {
                         type="text"
                         name="EC_Name"
                         placeholder="Emergency Contact Name *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -209,7 +209,7 @@ const UserForm = props => {
                         type="text"
                         name="EC_Phone1"
                         placeholder="EC Phone *"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -220,7 +220,7 @@ const UserForm = props => {
                         type="text"
                         name="EC_Phone2"
                         placeholder="EC Alt Phone"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -231,7 +231,7 @@ const UserForm = props => {
                         type="text"
                         name="Comment"
                         placeholder="Comments or Instructions"
-                        onChange={props.handleInputChange}
+                        onChange={props.ChangeHandler}
                     />
                 </div>
               </Col>
@@ -242,7 +242,7 @@ const UserForm = props => {
 
           <Row>
             <Col size="1">
-                <button type="submit" className="submitBtn btn btn-primary" onClick={props.handleFormSubmit}>
+                <button type="submit" className="submitBtn btn btn-primary" onClick={props.SubmitHandler}>
                     Submit
                 </button>
             </Col>

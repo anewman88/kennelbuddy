@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import API from "../utils/API";
+//import API from "../utils/API";
 import Jumbotron from "../components/Jumbotron";
 import UserForm from "../components/UserForm";
 import { Col, Row, Container } from "../components/Grid";
@@ -34,10 +34,21 @@ class CreateUser extends Component {
 
     SubmitHandler = (event) => {
       event.preventDefault();
+      console.log ("in SumbmitHandler");
+      console.log ('this.state ', this.state);
+
       // Verify that the required fields are filled
       // Check that they do not equal "*"  ????
       
       // write the user information to the database
+      const userInfo = {};
+      console.log('userInfo Before', userInfo);
+      console.log ("size of state is " + this.state.length);
+      for (const field in this.state) {
+        console.log ("in for, assigning ", field);
+        userInfo[field] = this.state[field];
+      }
+      console.log('-->', userInfo);
       // API.createUser(userInfo)
       //     .then(this.setState({ message: alert("Your user info is saved") }))
       //     .catch(err => console.log(err))
@@ -58,12 +69,11 @@ class CreateUser extends Component {
             </Jumbotron>
             <Container>
                 <UserForm
-                    handleFormSubmit={this.handleFormSubmit}
-                    handleInputChange={this.handleInputChange}
+                    ChangeHandler={this.ChangeHandler}
+                    SubmitHandler={this.SubmitHandler}
                 />
             </Container>
         </Container>
-
       );
     }
   }

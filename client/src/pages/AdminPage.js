@@ -34,7 +34,8 @@ class AdminPage extends Component {
                     <h1 className="text-white">Admin Page</h1>
                 </Jumbotron>
                 <Container>
-                    {/* <DisplayDevices ActiveDeviceList={this.state.ActiveDeviceList} handleDeleteButton={this.handleDeleteButton} /> */}
+                  <p>Put device info here</p>
+                  {/* <DisplayDevices ActiveDeviceList={this.state.ActiveDeviceList} handleDeleteButton={this.handleDeleteButton} /> */}
                 </Container>
             </Container>
         )
