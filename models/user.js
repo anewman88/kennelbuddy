@@ -3,31 +3,24 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: {type: String, required: true, index: { unique: true } },
-  password: {type: String, required: true },
-  Name: {type: String, required: true },
-  Address1: {type: String, required: true},
+  username: {type: String, index: { unique: true } },
+  password: {type: String},
+  Name: {type: String},
+  Address1: {type: String},
   Address2: {type: String},
-  City: {type: String, required: true},
-  State: {type: String, required: true},
-  Zip: {type: String, required: true},
-  Phone1: {type: String, required: true},
+  City: {type: String},
+  State: {type: String},
+  Zip: {type: String},
+  Phone1: {type: String},
   Phone2: {type: String},
   Email: {type: String},
-  EC_Name: {type: String, required: true},
-  EC_Phone: {type: String, required: true},
+  EC_Name: {type: String},
+  EC_Phone1: {type: String},
+  EC_Phone2: {type: String},
   Comment: {type: String},
-  PetName: {type: String},
-  PetImage: {type: String},
   DeviceID: {type: String},
+  DeviceDBID: {type: String},
   DeviceOnline: Boolean,
-  Upper_Temp: {type: Number},
-  Lower_Temp: {type: Number},
-  Interval: {type: Number},
-  Temp: [{
-         Value: Number,
-         Time: Date 
-        }]
 });
 
 const User = mongoose.model("User", userSchema);

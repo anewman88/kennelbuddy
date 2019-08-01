@@ -5,6 +5,7 @@ module.exports = {
 
   // Define the methods for the user collection
   createUser: function(req, res) {
+    console.log ("In dbaseController.createUser", req.data);
     db.User
       .create(req.body)
       .then(dbModel => res.json(dbModel))
@@ -38,6 +39,7 @@ module.exports = {
 
   // Define the methods for the device collection
   createDevice: function(req, res) {
+    console.log ("In dbaseController.createDevice", req.data);
     db.Device
       .create(req.body)
       .then(dbModel => res.json(dbModel))
@@ -62,11 +64,10 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findAllDevice: function(req, res) {
+  findAllDevices: function(req, res) {
     db.Device
-      .find(req.query)
+      .find({DeviceOnline: true})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
-
 };

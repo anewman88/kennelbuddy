@@ -29,7 +29,6 @@ class HomePage extends Component {
                 <a className="nav-link" href="/userlogin"><button type="button" className="btn btn-info text-white">User Login</button></a>
                 <a className="nav-link" href="/createuser"><button type="button" className="btn btn-danger text-white">Create Account</button></a>
                 <a className="nav-link" href="/adminlogin"><button type="button" className="btn btn-danger text-white">Admin Login</button></a>
-                <a className="nav-link" href="/adminlogin"><button type="button" className="btn btn-danger text-white">Admin Login</button></a>
               </nav>
               <Container>
                   <Row>

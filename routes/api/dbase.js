@@ -1,21 +1,29 @@
 const router = require("express").Router();
 const dbaseController = require("../../controllers/dbaseController");
 
-// Matches with "/api/dbase"
-router
-  .route("/")
-  .get(dbaseController.findAllDevice)
-  .post(dbaseController.createUser)
-  .post(dbaseController.createDevice);
+// Matches with prefix of "/api/dbase"
 
-// Matches with "/api/dbase/:id"
+// user collection routes 
 router
-  .route("/:id")
+  .route("/user/")
+  .get(dbaseController.findAllDevices)
+  .post(dbaseController.createUser);
+
+router
+  .route("/user/:id")
   .get(dbaseController.findUserById)
-  .get(dbaseController.findDeviceById)
   .put(dbaseController.updateUser)
-  .put(dbaseController.updateDevice)
   .delete(dbaseController.removeUser)
+
+// device collection routes
+router
+.route("/device/")
+.post(dbaseController.createDevice);
+
+router
+  .route("/device/:id")
+  .get(dbaseController.findDeviceById)
+  .put(dbaseController.updateDevice)
   .delete(dbaseController.removeDevice);
 
 module.exports = router;
