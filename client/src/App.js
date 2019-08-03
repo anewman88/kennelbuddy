@@ -6,6 +6,7 @@ import AdminPage from "./pages/AdminPage";
 import CreateUser from "./pages/CreateUser";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import UserLogin from "./pages/LoginPage";
 
 function App() {
   return (
@@ -14,11 +15,13 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/login" component={UserLogin} />
           {/* <Route exact path="/userlogin/:id" component={UserPage} /> */}
           <Route exact path="/userlogin/" component={UserPage} />
           <Route exact path="/userpage/" component={UserPage} />
           <Route exact path="/createuser/" component={CreateUser} />
           <Route exact path="/adminlogin/" component={AdminPage} />
+          <Route exact path="/userpage/:id" component={UserPage} />
           <Route component={NoMatch} />
         </Switch>
       </div>

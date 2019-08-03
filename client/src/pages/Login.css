@@ -1,0 +1,24 @@
+
+.Login {
+  padding: 60px 0;
+}
+  
+.Login form {
+  margin: 0 auto;
+  max-width: 300px;
+  text-align: center;
+}
+
+.LoginBox {
+  margin: 0 auto;
+  box-align: center;
+  max-width: 300px;
+  max-height: 400px;
+  text-align: center;
+  border: ridge 10px;
+
+}
+
+.LoginHeader {
+  padding: 40px;
+}

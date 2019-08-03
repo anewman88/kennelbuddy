@@ -100,6 +100,7 @@ const UserForm = props => {
                         type="text"
                         name="DeviceID"
                         placeholder="Device ID *"
+                        required
                         onChange={props.ChangeHandler}
                     />
                 </div>

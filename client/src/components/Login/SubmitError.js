@@ -1,14 +1,14 @@
-/**
- * Created by meller.olaf@gmail.com on 11/22/2017.
- */
+import React, { Component } from "react";
 
-import React from "react";
-
-
-export default class SubmitError extends React.Component {
+class SubmitError extends Component {
 
   constructor(props) {
     super(props);
+    
+    this.state = {
+      fake: "",
+    };
+
   }
 
   /**
@@ -23,4 +23,6 @@ export default class SubmitError extends React.Component {
       </span>
     )
   }
-};
+}
+
+export default SubmitError

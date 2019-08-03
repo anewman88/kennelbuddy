@@ -1,13 +1,14 @@
-/**
- * Created by meller.olaf@gmail.com on 11/22/2017.
- */
+import React, { Component } from "react";
 
-import React from "react";
-
-export default class Loader extends React.Component {
+class Loader extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      fake: "",
+    };
+
   }
 
   /**
@@ -38,4 +39,6 @@ export default class Loader extends React.Component {
       </span>
     )
   }
-};
+}
+
+export default Loader

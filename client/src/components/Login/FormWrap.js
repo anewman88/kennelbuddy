@@ -1,20 +1,15 @@
-/**
- * Created by meller.olaf@gmail.com on 11/22/2017.
- */
-
-import React from "react";
+import React, { Component } from "react";
 
 import FormSubmitButton from "./FormSubmitButton";
 
 
-export default class FormWrap extends React.Component {
+class FormWrap extends Component {
 
   constructor(props) {
     super(props);
 
     this.inputRefs = {};
   }
-
 
   /**
    *
@@ -238,4 +233,6 @@ export default class FormWrap extends React.Component {
 
     return formWrap;
   }
-};
+}
+
+export default FormWrap

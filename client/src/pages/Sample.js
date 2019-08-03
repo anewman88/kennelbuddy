@@ -1,7 +1,7 @@
-import React from 'react';
-import ModalLogin from '../../../src/pages/ModalLogin';
+import React, { Component } from "react";
+import ModalLogin from './ModalLogin';
 
-export default class Sample extends React.Component {
+class Sample extends Component {
 
   constructor(props) {
     super(props);
@@ -254,3 +254,5 @@ export default class Sample extends React.Component {
     )
   }
 }
+
+export default Sample

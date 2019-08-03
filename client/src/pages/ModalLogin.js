@@ -1,16 +1,14 @@
-/**
- * Created by meller.olaf@gmail.com on 11/22/2017.
- */
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Tabs from "./../components/Login/Tabs";
 import CloseBtn from "./../components/Login/Close";
 import SubmitError from "./../components/Login/SubmitError";
 import Loader from "./../components/Login/Loader";
 import FormWrap from "./../components/Login/FormWrap";
+
 require("./less/style.less");
 
-class ModalLogin extends React.Component {
+class ModalLogin extends Component {
   constructor(props) {
     super(props);
 
@@ -489,6 +487,6 @@ ModalLogin.propTypes = {
       })
     )
   })
-};
+}
 
 export default ModalLogin;

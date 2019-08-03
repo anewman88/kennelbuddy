@@ -1,11 +1,7 @@
-/**
- * Created by meller.olaf@gmail.com on 11/22/2017.
- */
-
-import React from "react";
+import React, { Component } from "react";
 import CloseIcon from "./CloseIcon";
 
-export default class CloseBtn extends React.Component {
+class CloseBtn extends Component {
 
   constructor(props) {
     super(props);
@@ -26,4 +22,6 @@ export default class CloseBtn extends React.Component {
       </div>
     )
   }
-};
+}
+
+export default CloseBtn

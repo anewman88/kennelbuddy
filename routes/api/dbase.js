@@ -6,7 +6,7 @@ const dbaseController = require("../../controllers/dbaseController");
 // user collection routes 
 router
   .route("/user/")
-  .get(dbaseController.findAllDevices)
+  .get(dbaseController.findUser)
   .post(dbaseController.createUser);
 
 router
@@ -18,6 +18,7 @@ router
 // device collection routes
 router
 .route("/device/")
+.get(dbaseController.findAllDevices)
 .post(dbaseController.createDevice);
 
 router
