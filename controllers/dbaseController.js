@@ -11,35 +11,44 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   updateUser: function(req, res) {
     console.log ("In dbaseController.updateUser req.data", req.data);
     console.log ("In dbaseController.updateUser req.params", req.params);
     console.log ("In dbaseController.updateUser req.query", req.query);
     console.log ("In dbaseController.updateUser req.body", req.body);
-
     db.User
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   findUser: function(req, res) {
     console.log ("In dbaseController.findUser req.data", req.data);
     console.log ("In dbaseController.findUser req.params", req.params);
     console.log ("In dbaseController.findUser req.query", req.query);
     console.log ("In dbaseController.findUser req.body", req.body);
     db.User
-      .find({username: req.params.username, password: req.params.password})
+      .findOne(req.query)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  
+
   findUserById: function(req, res) {
+    console.log ("In dbaseController.findUserById req.data", req.data);
+    console.log ("In dbaseController.findUserById req.params", req.params);
+    console.log ("In dbaseController.findUserById req.query", req.query);
+    console.log ("In dbaseController.findUserById req.body", req.body);
     db.User
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   removeUser: function(req, res) {
+    console.log ("In dbaseController.removeUser req.data", req.data);
+    console.log ("In dbaseController.removeUser req.params", req.params);
+    console.log ("In dbaseController.removeUser req.query", req.query);
+    console.log ("In dbaseController.removeUser req.body", req.body);
     db.User
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
@@ -68,6 +77,10 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findDeviceById: function(req, res) {
+    console.log ("In dbaseController.findDeviceById req.data", req.data);
+    console.log ("In dbaseController.findDeviceById req.params", req.params);
+    console.log ("In dbaseController.findDeviceById req.query", req.query);
+    console.log ("In dbaseController.findDeviceById req.body", req.body);
     db.Device
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))

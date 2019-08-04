@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
-import ModalLogin from './ModalLogin';
 
 const DebugOn = true;
 
@@ -12,7 +11,6 @@ class HomePage extends Component {
     super(props);
 
     this.state = {
-      showModal: false,
       loggedIn: null,
       loading: false,
       error: null,

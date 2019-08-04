@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom"
 import API from "../utils/API.js";
 import { Col, Row, Container } from "../components/Grid";
-import "./Login.css";
+import "./css/Login.css";
 
 class UserLogin extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class UserLogin extends Component {
       username: "",
       email: "",
       password: "",
+      UserDBID: {},
       gotoUserPage: false
     };
   }
@@ -29,10 +30,7 @@ class UserLogin extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    // Clear the form fields
-    this.setState({["username"]: '', ["password"]: ''});
-
-    alert("login submitted");
+    alert("login submitted " + this.state.username + " " + this.state.password);
 
     // Verify that the user has an account then proceed
     // to the user page
@@ -43,24 +41,25 @@ class UserLogin extends Component {
     console.log ("In LoginPage before API.findUser ", userLoginInfo);
     const query = "{" + "username:" + this.state.username + ", password:" + this.state.password + "}";
     API.findUser(userLoginInfo)
-    // API.findUser(query)
+//    API.findUser(query)
     .then(res => {
       console.log("User found id ", res.data);
       let UserDBID = res.data._id;
       console.log("User id is " + UserDBID);
 
       // go to UserPage
-      this.setState({gotoUserPage: true});
+      this.setState({gotoUserPage: true, UserDBID: res.data._id});
     })
     .catch(err => console.log(err))
 
-    // go to UserPage
-    this.setState({gotoUserPage: true});
+    // Clear the form fields
+    this.setState({username: '', password: ''});
+
   }
 
   render() {
     if (this.state.gotoUserPage === true) {
-      return <Redirect to='/userpage' />
+      return <Redirect to={"/userpage/" + this.state.UserDBID} />
     }
 
     return (

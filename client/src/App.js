@@ -15,12 +15,12 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/login" component={UserLogin} />
+          {/* <Route exact path="/login" component={UserLogin} /> */}
           {/* <Route exact path="/userlogin/:id" component={UserPage} /> */}
-          <Route exact path="/userlogin/" component={UserPage} />
-          <Route exact path="/userpage/" component={UserPage} />
+          <Route exact path="/userlogin/" component={UserLogin} />
           <Route exact path="/createuser/" component={CreateUser} />
           <Route exact path="/adminlogin/" component={AdminPage} />
+          <Route exact path="/userpage/" component={UserPage} />
           <Route exact path="/userpage/:id" component={UserPage} />
           <Route component={NoMatch} />
         </Switch>

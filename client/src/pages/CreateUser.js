@@ -4,7 +4,7 @@ import API from "../utils/API";
 import Jumbotron from "../components/Jumbotron";
 import UserForm from "../components/UserForm";
 import { Col, Row, Container } from "../components/Grid";
-import "./Login.css";
+import "./css/Login.css";
 //import { set } from "mongoose";
 
 class CreateUser extends Component {
@@ -122,7 +122,6 @@ class CreateUser extends Component {
 
         // go to UserPage
         this.setState({gotoUserPage: true});
-
     }
 
     ChangeHandler = (event) => {
@@ -135,7 +134,6 @@ class CreateUser extends Component {
       if (this.state.gotoUserPage === true) {
         return (<Redirect to={"/userpage/" + this.state.UserDBID} />
         )
-        
       }
       
       // Prompt for user info to create new user
