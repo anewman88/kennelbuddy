@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import Nav from "../components/Nav";
 import Jumbotron from "../components/Jumbotron";
 import { Container} from "../components/Grid";
 
@@ -30,8 +31,9 @@ class AdminPage extends Component {
     render() {
         return (
             <Container fluid className="container">
+                <Nav HeadingText={"Administative Page"}></Nav>
                 <Jumbotron>
-                    <h1 className="text-white">Admin Page</h1>
+                    
                 </Jumbotron>
                 <Container>
                   <p>Put device info here</p>

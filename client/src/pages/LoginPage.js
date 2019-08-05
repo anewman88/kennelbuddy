@@ -30,10 +30,7 @@ class UserLogin extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    alert("login submitted " + this.state.username + " " + this.state.password);
-
-    // Verify that the user has an account then proceed
-    // to the user page
+    // Verify that the user has an account then proceed to the user page
     const userLoginInfo = {};
     userLoginInfo.username = this.state.username;
     userLoginInfo.password = this.state.password;

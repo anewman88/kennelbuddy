@@ -5,14 +5,14 @@ import UserPage from "./pages/UserPage";
 import AdminPage from "./pages/AdminPage";
 import CreateUser from "./pages/CreateUser";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+// import Nav from "./components/Nav";
 import UserLogin from "./pages/LoginPage";
 
 function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        {/* <Nav /> */}
         <Switch>
           <Route exact path="/" component={HomePage} />
           {/* <Route exact path="/login" component={UserLogin} /> */}

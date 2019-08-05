@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom"
 import API from "../utils/API";
+import Nav from "../components/Nav";
 import Jumbotron from "../components/Jumbotron";
 import UserForm from "../components/UserForm";
 import { Col, Row, Container } from "../components/Grid";
@@ -92,7 +93,8 @@ class CreateUser extends Component {
           deviceInfo.DeviceOnline = false;
           deviceInfo.UserDBID = this.state.UserDBID;
           deviceInfo.PetName = userInfo.PetName;
-          deviceInfo.PetImage = userInfo.PetImage;
+          // correct the pet image path
+          deviceInfo.PetImage = userInfo.PetImage.replace("C:\\fakepath", "..\\images");
           deviceInfo.Upper_Temp = userInfo.Upper_Temp;
           deviceInfo.Lower_Temp = userInfo.Lower_Temp;
           deviceInfo.Interval = userInfo.Interval;

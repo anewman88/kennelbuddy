@@ -7,7 +7,7 @@ const DeviceBox = props => {
         <div className="card">
             <div className="card-body">
                 <div className="device">
-                    <h3>No Device</h3>
+                    <h3>No Device Available</h3>
                 </div>
             </div>
         </div>
@@ -15,24 +15,34 @@ const DeviceBox = props => {
             <div className="card">
                 <div className="card-body">
                     <div className="device">
-                        <h3>User Device</h3>
-                        {props.devices.map(device => {
-                            return (
-                                <li className="search-list list-group-item">
+                        <h3>Kennel Buddy Device</h3>
 
+                            <Row>
+                            <div className="img-container">
+                                <img alt={props.name} src={props.DeviceInfo.PetImage} />
+                            </div>
+                            </Row>
+                            <div className="content">
+                                <Row>
+                                    <strong>Pet Name:</strong> {props.DeviceInfo.PetName}
+                                </Row>
+                                <Row>
+                                    <strong>Current Temp:</strong> {props.DeviceInfo.Cur_Temp}
+                                </Row>
+                                <Row>
+                                    <strong>Upper Temp:</strong> {props.DeviceInfo.Upper_Temp}
+                                </Row>
+                                <Row>
+                                    <strong>Lower Temp:</strong> {props.DeviceInfo.Lower_Temp}
+                                </Row>
+                            </div>
+                            <span onClick={() => props.removeDevice(props.DeviceInfo.DeviceID)} className="remove">
+                            𝘅
+                            </span>
+                    </div>
 
-                                {/* use googlebooks as an example here */}
-                                    <Row>
-                                        <Col size="6" className="DisplayDevices col" id={device.DeviceID + "Card"} key={device._id}>
-                                            
-                                        </Col>
-                                    </Row>
-                                </li>
-                            );
-                        })}
                     </div>
                 </div>
-            </div>
         )
 }
 export default DeviceBox

@@ -3,7 +3,8 @@ import API from "../utils/API";
 import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
 //import UserInfo from "../components/UserInfo";
-//import AddDevice from "../components/AddDevice";
+import Nav from "../components/Nav";
+import DeviceBox from "../components/DeviceBox";
 //import DisplayDevice from "../components/DisplayDevices";
 
 const DebugOn = true;
@@ -72,8 +73,9 @@ class UserPage extends Component {
     render() {
       return (
           <Container fluid>
+              <Nav HeadingText={"User Page"}></Nav>
               <Jumbotron>
-                <h1 className="text-white">User Page</h1>
+                
               </Jumbotron>
               <Container>
                 <DeviceBox DeviceInfo={this.state.DeviceInfo} />
