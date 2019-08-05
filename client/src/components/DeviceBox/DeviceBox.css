@@ -1,0 +1,27 @@
+.devicebox {
+    margin: auto;
+    width: 400px;
+    border: ridge, 10px;
+    background-color: lightblue;
+}
+
+h3, h4, h5 {
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+.curtemp {
+    margin: auto;
+    padding: 20px;
+    background-color: rgb(8, 209, 8);
+    text-align: center;
+}
+
+button {
+    margin: 10px;
+    padding: 10px;
+}
+
+.actionbuttons {
+  text-align: center;
+}

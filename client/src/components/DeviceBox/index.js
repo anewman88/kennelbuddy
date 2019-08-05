@@ -1,5 +1,5 @@
 import React from "react";
-//import "./style.css";
+import "./DeviceBox.css";
 import {Row, Col} from "../Grid"
 
 const DeviceBox = props => {
@@ -12,33 +12,36 @@ const DeviceBox = props => {
             </div>
         </div>
     ) : (
-            <div className="card">
+            <div className="card devicebox">
+                    <h3>Kennel Buddy Device Info</h3>
+                    <h4>{props.DeviceInfo.PetName} - {props.DeviceInfo.DeviceID}</h4>
                 <div className="card-body">
                     <div className="device">
-                        <h3>Kennel Buddy Device</h3>
 
-                            <Row>
-                            <div className="img-container">
-                                <img alt={props.name} src={props.DeviceInfo.PetImage} />
-                            </div>
-                            </Row>
+                            {/* <Row>
+                                <div className="img-container">
+                                    <img alt={props.name} src={props.DeviceInfo.PetImage} />
+                                </div>
+                            </Row> */}
+
                             <div className="content">
                                 <Row>
-                                    <strong>Pet Name:</strong> {props.DeviceInfo.PetName}
+                                    <div className="curtemp">
+                                        <h3>Current Temp: {props.DeviceInfo.Cur_Temp} &deg;F </h3> 
+                                    </div>
                                 </Row>
                                 <Row>
-                                    <strong>Current Temp:</strong> {props.DeviceInfo.Cur_Temp}
+                                    <h5>Lowest Temp: {props.DeviceInfo.TempMin} &deg;F with Limit: {props.DeviceInfo.Lower_Temp}&deg;F</h5> 
                                 </Row>
                                 <Row>
-                                    <strong>Upper Temp:</strong> {props.DeviceInfo.Upper_Temp}
-                                </Row>
-                                <Row>
-                                    <strong>Lower Temp:</strong> {props.DeviceInfo.Lower_Temp}
+                                    <h5>Highest Temp: {props.DeviceInfo.TempMax} &deg;F with Limit: {props.DeviceInfo.Upper_Temp}&deg;F</h5> 
                                 </Row>
                             </div>
-                            <span onClick={() => props.removeDevice(props.DeviceInfo.DeviceID)} className="remove">
-                            𝘅
-                            </span>
+                            <div className="buttons">
+                                <button onClick={() => props.removeDevice(props.DeviceInfo.DeviceID)} className="remove">Delete</button>
+                                <button onClick={() => props.emulateDevice(props.DeviceInfo.DeviceID)} className="emulate">Emulate</button>
+                                <button onClick={() => props.deactivateDevice(props.DeviceInfo.DeviceID)} className="deactivate">Deactivate</button>
+                            </div>
                     </div>
 
                     </div>

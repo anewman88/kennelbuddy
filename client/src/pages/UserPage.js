@@ -4,8 +4,9 @@ import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
 //import UserInfo from "../components/UserInfo";
 import Nav from "../components/Nav";
+import UserBox from "../components/UserBox";
 import DeviceBox from "../components/DeviceBox";
-//import DisplayDevice from "../components/DisplayDevices";
+import "./css/style.css";
 
 const DebugOn = true;
 
@@ -15,6 +16,7 @@ class UserPage extends Component {
       UserID: "",
       DeviceDBID: "",
       DeviceActive: false,
+      DeviceEmulate: false,
       UserInfo: [],
       DeviceInfo: [],
       CurTemp: 0,
@@ -35,6 +37,7 @@ class UserPage extends Component {
         
         // Get the user's device information
         this.setState ({DeviceDBID: res.data.DeviceDBID})
+
         console.log ("in UserPage looking for device " + this.state.DeviceDBID)
         API.findDeviceById(this.state.DeviceDBID)
         .then(res => {
@@ -69,16 +72,54 @@ class UserPage extends Component {
   
     }
   
+    removeDevice = event => {
+      //Delete the device from the database
+      alert ("Delete Device not available for demo");
+    };
+
+    emulateDevice = event => {
+      console.log ("in UserPage emulateDevice clicked " + this.state.DeviceDBID)
+      
+      // toggle the state emulate flag
+      this.setState({ DeviceEmulate: !this.state.DeviceEmulate })
+
+      // update the database
+    //   API.updateDevice(this.state.DeviceDBID, this.state.DeviceEmulate)
+    //   .then(res => {
+    //     console.log ("got device", res.data)
+    //     this.setState({ DeviceInfo: res.data })
+    //   })
+    //   .catch(err => console.log(err));
+
+    };
+
+    deactivateDevice = event => {
+      console.log ("in UserPage deactivateDevice clicked " + this.state.DeviceDBID)
+      
+      // set DeviceActive flage to false
+      this.setState({ DeviceActive: false});
+
+      // update the database
+    //   API.updateDevice(this.state.DeviceDBID, this.state.DeviceEmulate)
+    //   .then(res => {
+    //     console.log ("got device", res.data)
+    //     this.setState({ DeviceInfo: res.data })
+    //   })
+    //   .catch(err => console.log(err));
+
+    };
 
     render() {
       return (
           <Container fluid>
-              <Nav HeadingText={"User Page"}></Nav>
-              <Jumbotron>
-                
-              </Jumbotron>
-              <Container>
-                <DeviceBox DeviceInfo={this.state.DeviceInfo} />
+              <Nav HeadingText={"Kennel Buddy"}></Nav>
+              <Container className="userpage">
+              <UserBox className="userpage" UserInfo={this.state.UserInfo} />
+              <DeviceBox className="userpage" DeviceInfo={this.state.DeviceInfo}
+                  removeDevice = {() => this.removeDevice()}
+                  emulateDevice = {() => this.emulateDevice()} 
+                  deactivateDevice = {() => this.deactivateDevice()} 
+              />
               </Container>
  
 
