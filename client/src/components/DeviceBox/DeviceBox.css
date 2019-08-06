@@ -12,13 +12,20 @@ h3, h4, h5 {
 }
 .curtemp {
     margin: auto;
-    padding: 20px;
+    padding: 10px;
     background-color: rgb(8, 209, 8);
     text-align: center;
 }
 
+.devstatus {
+    margin: auto;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
 button {
     margin: 10px;
+    margin-left: 18px;
     padding: 10px;
 }
 

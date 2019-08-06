@@ -9,6 +9,17 @@ import DeviceBox from "../components/DeviceBox";
 import "./css/style.css";
 
 const DebugOn = true;
+const OFFLINE = 0;
+const ONLINE = 1;
+const OFFLINE_EM = 2;
+const ONLINE_EM = 3;
+
+const Status = [ 
+  {str: "Offline", color: 0}, 
+  {str: "Online", color: 0},
+  {str: "Offline Em", color: 0},
+  {str: "Online Em", color: 0}
+];
 
 class UserPage extends Component {
   //create state
@@ -17,6 +28,7 @@ class UserPage extends Component {
       DeviceDBID: "",
       DeviceActive: false,
       DeviceEmulate: false,
+      DeviceStatus: 0,
       UserInfo: [],
       DeviceInfo: [],
       CurTemp: 0,
@@ -43,6 +55,7 @@ class UserPage extends Component {
         .then(res => {
           console.log ("got device", res.data)
           this.setState({ DeviceInfo: res.data })
+          
         })
         .catch(err => console.log(err));
       })
@@ -80,24 +93,36 @@ class UserPage extends Component {
     emulateDevice = event => {
       console.log ("in UserPage emulateDevice clicked " + this.state.DeviceDBID)
       
-      // toggle the state emulate flag
-      this.setState({ DeviceEmulate: !this.state.DeviceEmulate })
+      // if the device is online, alert an error that the device is already online
+      if (this.state.DeviceInfo.DeviceOnline) {
+        alert("Error. Device " + this.state.DeviceInfo.DeviceId + "is online");
+      } 
+      else {
+        // toggle the state emulate flag
+        this.setState({ DeviceEmulate: !this.state.DeviceEmulate })
+        alert("DeviceEmulate is " + this.state.DeviceEmulate);
+        let StatusVal = (((this.state.DeviceEmulate ? 1 :0)*2) + (this.state.DeviceOnline ? 1 : 0));
+        alert ("StatusVal is " + StatusVal);
 
-      // update the database
-    //   API.updateDevice(this.state.DeviceDBID, this.state.DeviceEmulate)
-    //   .then(res => {
-    //     console.log ("got device", res.data)
-    //     this.setState({ DeviceInfo: res.data })
-    //   })
-    //   .catch(err => console.log(err));
+        this.setState({DeviceStatus: StatusVal}); 
+        alert ("Device Status is " + this.state.DeviceStatus);
 
+        // update the database
+      //   API.updateDevice(this.state.DeviceDBID, this.state.DeviceEmulate)
+      //   .then(res => {
+      //     console.log ("got device", res.data)
+      //     this.setState({ DeviceInfo: res.data })
+      //   })
+      //   .catch(err => console.log(err));
+      }
     };
 
     deactivateDevice = event => {
       console.log ("in UserPage deactivateDevice clicked " + this.state.DeviceDBID)
       
-      // set DeviceActive flage to false
+      // set DeviceActive flag to false
       this.setState({ DeviceActive: false});
+      
 
       // update the database
     //   API.updateDevice(this.state.DeviceDBID, this.state.DeviceEmulate)
@@ -112,10 +137,12 @@ class UserPage extends Component {
     render() {
       return (
           <Container fluid>
-              <Nav HeadingText={"Kennel Buddy"}></Nav>
+              <Nav HeadingText={"Kennel Buddy - " + this.state.UserInfo.username}></Nav>
               <Container className="userpage">
-              <UserBox className="userpage" UserInfo={this.state.UserInfo} />
-              <DeviceBox className="userpage" DeviceInfo={this.state.DeviceInfo}
+              {/* <UserBox className="userpage" UserInfo={this.state.UserInfo} /> */}
+              <DeviceBox className="userpage" 
+                  DeviceInfo={this.state.DeviceInfo}
+                  DeviceStatus={Status[this.state.DeviceStatus].str}
                   removeDevice = {() => this.removeDevice()}
                   emulateDevice = {() => this.emulateDevice()} 
                   deactivateDevice = {() => this.deactivateDevice()} 

@@ -26,6 +26,12 @@ const DeviceBox = props => {
 
                             <div className="content">
                                 <Row>
+                                    <div className="devstatus">
+                                        <h3>Device Status: {props.DeviceStatus}</h3> 
+                                    </div>
+                                </Row>
+
+                                <Row>
                                     <div className="curtemp">
                                         <h3>Current Temp: {props.DeviceInfo.Cur_Temp} &deg;F </h3> 
                                     </div>
@@ -38,9 +44,9 @@ const DeviceBox = props => {
                                 </Row>
                             </div>
                             <div className="buttons">
-                                <button onClick={() => props.removeDevice(props.DeviceInfo.DeviceID)} className="remove">Delete</button>
-                                <button onClick={() => props.emulateDevice(props.DeviceInfo.DeviceID)} className="emulate">Emulate</button>
                                 <button onClick={() => props.deactivateDevice(props.DeviceInfo.DeviceID)} className="deactivate">Deactivate</button>
+                                <button onClick={() => props.emulateDevice(props.DeviceInfo.DeviceID)} className="emulate">Emulate</button>
+                                <button onClick={() => props.removeDevice(props.DeviceInfo.DeviceID)} className="remove">Delete</button>
                             </div>
                     </div>
 
