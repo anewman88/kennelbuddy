@@ -86,6 +86,16 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findDeviceAndEmulate: function(req, res) {
+    console.log ("In dbaseController.findDevice req.data", req.data);
+    console.log ("In dbaseController.findDevice req.params", req.params);
+    console.log ("In dbaseController.findDevice req.query", req.query);
+    console.log ("In dbaseController.findDevice req.body", req.body);
+    db.Device
+      .findOne(req.params.query)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   removeDevice: function(req, res) {
     db.Device
       .findById({ _id: req.params.id })

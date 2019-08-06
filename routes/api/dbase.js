@@ -17,6 +17,10 @@ router
 
 // device collection routes
 router
+.route("/emulatedevice/")
+.get(dbaseController.findDeviceAndEmulate);
+
+router
 .route("/device/")
 .get(dbaseController.findAllDevices)
 .post(dbaseController.createDevice);

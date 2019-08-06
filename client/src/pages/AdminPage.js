@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import Nav from "../components/Nav";
 import Jumbotron from "../components/Jumbotron";
-import { Container} from "../components/Grid";
+import { Container, Row, Col } from "../components/Grid";
 
 class AdminPage extends Component {
     state = {
@@ -32,10 +32,15 @@ class AdminPage extends Component {
         return (
             <Container fluid className="container">
                 <Nav HeadingText={"Administative Page"}></Nav>
-                <Jumbotron>
-                    
-                </Jumbotron>
+                <Jumbotron> </Jumbotron>
                 <Container>
+                <Row>
+                    <Col size="5"></Col>
+                    <Col className="justify-content-center" size="2">
+                        <a className="nav-link" href="/emulate" ><button type="button" className="btn btn-info text-white">Emulate</button></a>
+                    </Col>
+                </Row>
+
                   <p>Put device info here</p>
                   {/* <DisplayDevices ActiveDeviceList={this.state.ActiveDeviceList} handleDeleteButton={this.handleDeleteButton} /> */}
                 </Container>

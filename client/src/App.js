@@ -4,6 +4,8 @@ import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import AdminPage from "./pages/AdminPage";
 import CreateUser from "./pages/CreateUser";
+import EmulatePrompt from "./pages/EmulatePrompt";
+import EmulatePage from "./pages/EmulatePage";
 import NoMatch from "./pages/NoMatch";
 // import Nav from "./components/Nav";
 import UserLogin from "./pages/LoginPage";
@@ -22,6 +24,8 @@ function App() {
           <Route exact path="/adminlogin/" component={AdminPage} />
           <Route exact path="/userpage/" component={UserPage} />
           <Route exact path="/userpage/:id" component={UserPage} />
+          <Route exact path="/emulate/" component={EmulatePrompt} />
+          <Route exact path="/emulatedevice/:id" component={EmulatePage} />
           <Route component={NoMatch} />
         </Switch>
       </div>

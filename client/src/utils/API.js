@@ -13,7 +13,7 @@ export default {
     return axios.put("/api/dbase/user/" + id, userInfo);
   },
  
-  // Finds the user in the database based on id
+  // Finds the user in the database based on username and password
   findUser: function (userInfo) {
     console.log ("In findUser before axios.get ", userInfo);
     return axios.get("/api/dbase/user/", {      
@@ -57,6 +57,17 @@ export default {
     return axios.get("/api/dbase/device/" + id);
   },
   
+  // Finds the device in the database based on DeviceID (not DBID)
+  // Used only when finding device to emulate it
+  findDeviceAndEmulate: function (DeviceID) {
+    console.log ("In findDeviceAndEmulate before axios.get ", DeviceID);
+    return axios.get("/api/dbase/emulatedevice/", {      
+            params: {
+              DeviceID: DeviceID
+            } 
+          })
+  },
+
   // Updates device information to the database
   updateDevice: function (id, deviceInfo) {
     return axios.put("/api/dbase/device/" + id, deviceInfo);
