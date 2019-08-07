@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-//import Jumbotron from "../components/Jumbotron";
 import { Container } from "../components/Grid";
 //import UserInfo from "../components/UserInfo";
 import Nav from "../components/Nav";
@@ -28,9 +27,7 @@ class UserPage extends Component {
       CurTemp: 0,
       Temps: []
   };
-  // get the user info based on the input parameter see example below
-  // When this component mounts, grab the book with the _id of this.props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
+  // get the user info based on the input parameter 
   componentDidMount() {
     console.log ("in UserPage with user id " + this.props.match.params.id)
     const UserDBID = this.props.match.params.id;
@@ -49,7 +46,6 @@ class UserPage extends Component {
         .then(res => {
           console.log ("got device", res.data)
           this.setState({ DeviceInfo: res.data })
-          
         })
         .catch(err => console.log(err));
       })
@@ -76,7 +72,6 @@ class UserPage extends Component {
   
       })
       .catch(err => console.log(err))
-  
     }
   
     removeDevice = event => {
@@ -84,48 +79,11 @@ class UserPage extends Component {
       alert ("Delete Device not available for demo");
     };
 
-    emulateDevice = event => {
-      console.log ("in UserPage emulateDevice clicked " + this.state.DeviceDBID)
-      
-      // if the device is online, alert an error that the device is already online
-      if (this.state.DeviceInfo.DeviceOnline) {
-        alert("Error. Device " + this.state.DeviceInfo.DeviceId + "is online");
-      } 
-      else {
-        // toggle the state emulate flag
-        this.setState({ DeviceEmulate: !this.state.DeviceEmulate })
-        alert("DeviceEmulate is " + this.state.DeviceEmulate);
-        let StatusVal = (((this.state.DeviceEmulate ? 1 :0)*2) + (this.state.DeviceOnline ? 1 : 0));
-        alert ("StatusVal is " + StatusVal);
-
-        this.setState({DeviceStatus: StatusVal}); 
-        alert ("Device Status is " + this.state.DeviceStatus);
-
-        // update the database
-      //   API.updateDeviceByID(this.state.DeviceDBID, this.state.DeviceEmulate)
-      //   .then(res => {
-      //     console.log ("got device", res.data)
-      //     this.setState({ DeviceInfo: res.data })
-      //   })
-      //   .catch(err => console.log(err));
-      }
-    };
-
     deactivateDevice = event => {
       console.log ("in UserPage deactivateDevice clicked " + this.state.DeviceDBID)
       
       // set DeviceActive flag to false
       this.setState({ DeviceActive: false});
-      
-
-      // update the database
-    //   API.updateDeviceByID(this.state.DeviceDBID, this.state.DeviceEmulate)
-    //   .then(res => {
-    //     console.log ("got device", res.data)
-    //     this.setState({ DeviceInfo: res.data })
-    //   })
-    //   .catch(err => console.log(err));
-
     };
 
     render() {
@@ -138,7 +96,6 @@ class UserPage extends Component {
                   DeviceInfo={this.state.DeviceInfo}
                   DeviceStatus={Status[this.state.DeviceStatus].str}
                   removeDevice = {() => this.removeDevice()}
-                  emulateDevice = {() => this.emulateDevice()} 
                   deactivateDevice = {() => this.deactivateDevice()} 
               />
               </Container>

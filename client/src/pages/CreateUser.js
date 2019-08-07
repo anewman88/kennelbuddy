@@ -51,7 +51,7 @@ class CreateUser extends Component {
         userCreateInfo.username = this.state.username;
         userCreateInfo.password = this.state.password;
         
-        console.log('-->', userCreateInfo);
+        console.log('In CreateUser before API.createUser: ', userCreateInfo);
         API.createUser(userCreateInfo)
           .then(res => {
             console.log("User created return data is ", res.data);
@@ -151,7 +151,7 @@ class CreateUser extends Component {
                     <Col size="6">
                       <div className="form-group">
                           <input className="form-control"
-                              autofocus
+                              autoFocus
                               value={this.state.username}
                               type="text"
                               name="username"
@@ -169,7 +169,7 @@ class CreateUser extends Component {
                     <Col size="6">
                       <div className="form-group">
                           <input className="form-control"
-                              autofocus
+                              autoFocus
                               value={this.state.password}
                               type="password"
                               name="password"
@@ -187,7 +187,7 @@ class CreateUser extends Component {
                     <Col size="6">
                       <div className="form-group">
                           <input className="form-control"
-                              autofocus
+                              autoFocus
                               value={this.state.password2}
                               type="password"
                               name="password2"
@@ -198,16 +198,7 @@ class CreateUser extends Component {
                       </div>
                     </Col>
                 </Row>
-
-
-                <button
-                  block
-                  bsSize="large"
-                  // disabled={!this.validateForm()}
-                  type="submit"
-                >
-                  Login
-                </button>
+                <button type="submit">Login</button>
               </form>
             </Container>
           </div>

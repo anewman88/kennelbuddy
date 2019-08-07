@@ -45,7 +45,6 @@ const DeviceBox = props => {
                             </div>
                             <div className="buttons">
                                 <button onClick={() => props.deactivateDevice(props.DeviceInfo.DeviceID)} className="deactivate">Deactivate</button>
-                                <button onClick={() => props.emulateDevice(props.DeviceInfo.DeviceID)} className="emulate">Emulate</button>
                                 <button onClick={() => props.removeDevice(props.DeviceInfo.DeviceID)} className="remove">Delete</button>
                             </div>
                     </div>

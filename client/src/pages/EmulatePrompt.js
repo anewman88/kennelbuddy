@@ -54,7 +54,7 @@ class EmulatePrompt extends Component {
               <Col size="6">
                 <div className="form-group">
                     <input className="form-control"
-                        autofocus
+                        autoFocus
                         value={this.state.DeviceID}
                         type="text"
                         name="DeviceID"
@@ -71,7 +71,7 @@ class EmulatePrompt extends Component {
               <Col size="6">
                 <div className="form-group">
                     <input className="form-control"
-                        autofocus
+                        autoFocus
                         value={this.state.UpdateInterval}
                         type="number"
                         name="UpdateInterval"
@@ -83,7 +83,7 @@ class EmulatePrompt extends Component {
                 </div>
               </Col>
           </Row> */}
-          <button block bsSize="large" type="submit"> Submit </button>
+          <button type="submit"> Submit </button>
         </form>
         </Container>
       </div>

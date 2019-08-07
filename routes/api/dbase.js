@@ -12,7 +12,7 @@ router
 router
   .route("/user/:id")
   .get(dbaseController.findUserById)
-  .put(dbaseController.updateUser)
+  .put(dbaseController.updateUser);
 //  .delete(dbaseController.removeUser)
 
 // device collection routes
@@ -29,8 +29,8 @@ router
 
 router
   .route("/device/:id")
-  .get(dbaseController.findDeviceById)
-  .put(dbaseController.updateDeviceById)
+  .get(dbaseController.findDeviceById);
+//  .put(dbaseController.updateDeviceById);
 //  .delete(dbaseController.removeDevice);
 
 module.exports = router;

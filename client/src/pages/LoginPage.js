@@ -69,7 +69,7 @@ class UserLogin extends Component {
               <Col size="6">
                 <div className="form-group">
                     <input className="form-control"
-                        autofocus
+                        autoFocus
                         value={this.state.username}
                         type="text"
                         name="username"
@@ -86,7 +86,7 @@ class UserLogin extends Component {
               <Col size="6">
                 <div className="form-group">
                     <input className="form-control"
-                        autofocus
+                        autoFocus
                         value={this.state.password}
                         type="password"
                         name="password"
@@ -97,14 +97,7 @@ class UserLogin extends Component {
                 </div>
               </Col>
           </Row>
-          <button
-            block
-            bsSize="large"
-            // disabled={!this.validateForm()}
-            type="submit"
-          >
-            Login
-          </button>
+          <button type="submit">Login</button>
         </form>
         </Container>
       </div>

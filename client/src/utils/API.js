@@ -12,7 +12,13 @@ export default {
     console.log ("In updateUser before axios.put id:" + id, userInfo)
     return axios.put("/api/dbase/user/" + id, userInfo);
   },
- 
+
+  // Updates device information to the database by DBID
+  updateDeviceByID: function (id, updateInfo) {
+    console.log ("In updateDeviceByID before axios.put " + id, updateInfo);
+    return axios.put("/api/dbase/device/" + id, updateInfo);
+  },
+  
   // Finds the user in the database based on username and password
   findUser: function (userInfo) {
     console.log ("In findUser before axios.get ", userInfo);
@@ -74,7 +80,8 @@ export default {
     console.log ("In updateEmulateDevice before axios.put ", DeviceID, DeviceEmulate);
     return axios.put("/api/dbase/emulatedevice/", {
       query: {DeviceID}, 
-      data: {DeviceEmulate}});
+      // data: {DeviceEmulate}
+    });
   },
 
   // Updates device information to the database
@@ -82,21 +89,9 @@ export default {
     console.log ("In updateEmulateDevice before axios.get ", DeviceID, updateInfo);
     return axios.put("/api/dbase/device/", {
       query: {DeviceID}, 
-      data: {updateInfo}});
+      // data: {updateInfo}
+    });
   },
-  
-
-  // Updates device information to the database by DBID
-  updateDeviceByID: function (id, updateInfo) {
-    console.log ("In updateDeviceByID before axios.put ", id, updateInfo);
-    return axios.put("/api/dbase/device/" + id, {
-      data: {updateInfo}});
-  },
-  
-  // Updates device information to the database
-  // updateDevice: function (id, deviceInfo) {
-  //   return axios.put("/api/dbase/device/" + id, deviceInfo);
-  // },
   
   // Get all the active devices in the database
   getActiveDevices: function () {

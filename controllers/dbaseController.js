@@ -22,6 +22,17 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  
+  updateDeviceByID: function(req, res) {
+    console.log ("In dbaseController.updateDeviceById req.data", req.data);
+    console.log ("In dbaseController.updateDeviceById req.params", req.params);
+    console.log ("In dbaseController.updateDeviceById req.query", req.query);
+    console.log ("In dbaseController.updateDeviceById req.body", req.body);
+    db.Device
+      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 
   findUser: function(req, res) {
     console.log ("In dbaseController.findUser req.data", req.data);
@@ -67,12 +78,6 @@ module.exports = {
     console.log ("In dbaseController.createDevice", req.data);
     db.Device
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  updateDeviceByID: function(req, res) {
-    db.Device
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

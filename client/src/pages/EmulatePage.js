@@ -53,7 +53,6 @@ class EmulatePage extends Component {
           this.setState({ DeviceInfo: res.data })
       })
       .catch(err => console.log(err));
-
     }
 
     render() {
@@ -88,7 +87,7 @@ class EmulatePage extends Component {
                                     <Col size="6">
                                         <div className="form-group">
                                             <input className="form-control"
-                                                autofocus
+                                                autoFocus
                                                 value={this.state.CurAirTemp}
                                                 type="text"
                                                 name="CurAirTemp"
