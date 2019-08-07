@@ -1,6 +1,6 @@
 .devicebox {
     margin: auto;
-    width: 400px;
+    width: 500px;
     border: ridge, 10px;
     background-color: lightblue;
 }
@@ -13,7 +13,6 @@ h3, h4, h5 {
 .curtemp {
     margin: auto;
     padding: 10px;
-    background-color: rgb(8, 209, 8);
     text-align: center;
 }
 

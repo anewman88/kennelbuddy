@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import API from "../utils/API";
+//import API from "../utils/API";
 import Jumbotron from "../components/Jumbotron";
 import Nav from "../components/Nav";
 import { Col, Row, Container } from "../components/Grid";
 import "./css/style.css";
-
-const DebugOn = true;
 
 class HomePage extends Component {
     constructor(props) {

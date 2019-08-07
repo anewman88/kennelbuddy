@@ -1,6 +1,6 @@
 import React from "react";
 import "./EmulateBox.css";
-import {Row, Col} from "../Grid"
+import {Row} from "../Grid"
 
 const EmulateBox = props => {
     return (props.DeviceInfo.length === 0) ? (
@@ -13,7 +13,7 @@ const EmulateBox = props => {
         </div>
     ) : (
             <div className="card devicebox">
-                    <h3>Emulate Device Info</h3>
+                    <h3>Emulate Device </h3>
                     <h4>{props.DeviceInfo.PetName} - {props.DeviceInfo.DeviceID}</h4>
                 <div className="card-body">
                     <div className="device">

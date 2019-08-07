@@ -70,9 +70,19 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  updateDevice: function(req, res) {
+  updateDeviceByID: function(req, res) {
     db.Device
       .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  updateDeviceInfo: function(req, res) {
+    console.log ("In dbaseController.updateDeviceInfo req.data", req.data);
+    console.log ("In dbaseController.updateDeviceInfo req.params", req.params);
+    console.log ("In dbaseController.updateDeviceInfo req.query", req.query);
+    console.log ("In dbaseController.updateDeviceInfo req.body", req.body);
+    db.Device
+      .findOneAndUpdate(req.body.query, req.body.data, {new: true})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -86,11 +96,21 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findDeviceAndEmulate: function(req, res) {
-    console.log ("In dbaseController.findDevice req.data", req.data);
-    console.log ("In dbaseController.findDevice req.params", req.params);
-    console.log ("In dbaseController.findDevice req.query", req.query);
-    console.log ("In dbaseController.findDevice req.body", req.body);
+  updateEmulateDevice: function(req, res) {
+    console.log ("In dbaseController.updateEmulateDevice req.data", req.data);
+    console.log ("In dbaseController.updateEmulateDevice req.params", req.params);
+    console.log ("In dbaseController.updateEmulateDevice req.query", req.query);
+    console.log ("In dbaseController.updateEmulateDevice req.body", req.body);
+    db.Device
+      .findOneAndUpdate(req.body.query, req.body.data, {new: true})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findEmulateDevice: function(req, res) {
+    console.log ("In dbaseController.findEmulateDevice req.data", req.data);
+    console.log ("In dbaseController.findEmulateDevice req.params", req.params);
+    console.log ("In dbaseController.findEmulateDevice req.query", req.query);
+    console.log ("In dbaseController.findEmulateDevice req.body", req.body);
     db.Device
       .findOne(req.params.query)
       .then(dbModel => res.json(dbModel))

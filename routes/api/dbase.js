@@ -13,22 +13,24 @@ router
   .route("/user/:id")
   .get(dbaseController.findUserById)
   .put(dbaseController.updateUser)
-  .delete(dbaseController.removeUser)
+//  .delete(dbaseController.removeUser)
 
 // device collection routes
 router
 .route("/emulatedevice/")
-.get(dbaseController.findDeviceAndEmulate);
+.get(dbaseController.findEmulateDevice)
+.put(dbaseController.updateEmulateDevice);
 
 router
 .route("/device/")
 .get(dbaseController.findAllDevices)
-.post(dbaseController.createDevice);
+.post(dbaseController.createDevice)
+.put(dbaseController.updateDeviceInfo);
 
 router
   .route("/device/:id")
   .get(dbaseController.findDeviceById)
-  .put(dbaseController.updateDevice)
-  .delete(dbaseController.removeDevice);
+  .put(dbaseController.updateDeviceById)
+//  .delete(dbaseController.removeDevice);
 
 module.exports = router;

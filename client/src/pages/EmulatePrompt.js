@@ -24,10 +24,10 @@ class EmulatePrompt extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log ("In EmulatePrompt before API.findDeviceAndEmulate", this.state.DeviceID);
-    alert ("DeviceId: " + this.state.DeviceID + "  Interval: " + this.state.UpdateInterval);
+    console.log ("In EmulatePrompt before API.findEmulateDevice", this.state.DeviceID);
+    
     // Find the device then proceed to the Emulate page
-    API.findDeviceAndEmulate(this.state.DeviceID)
+    API.findEmulateDevice(this.state.DeviceID)
     .then(res => {
       console.log("Device found ", res.data);
 

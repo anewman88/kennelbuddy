@@ -2,91 +2,118 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import Nav from "../components/Nav";
-import EmulateBox from "../components/EmulateBox";
-import "./css/style.css";
-
-const DebugOn = true;
-const OFFLINE = 0;
-const ONLINE = 1;
-const OFFLINE_EM = 2;
-const ONLINE_EM = 3;
-
-const Status = [ 
-  {str: "Offline", color: 0}, 
-  {str: "Online", color: 0},
-  {str: "Offline Em", color: 0},
-  {str: "Online Em", color: 0}
-];
+//import EmulateBox from "../components/EmulateBox";
+//import "./css/style.css";
 
 class EmulatePage extends Component {
-  //create state
-  state = {
-      DeviceID: "",
-      DeviceDBID: "",
-      DeviceActive: false,
-      DeviceEmulate: false,
-      DeviceInfo: [],
-      CurAirTemp: 0,
-      Cur_Temp: 0,
-      Temps: []
-  };
-
-  // get the device info based on the input parameter
-  componentDidMount() {
-    console.log ("in Emulate with user id " + this.props.match.params.id)
-    this.setState ({DeviceID: this.props.match.params.id})
-
-    API.findDeviceAndEmulate(this.state.DeviceID)
-      .then(res => {
-        console.log ("got device data", res.data)
-        this.setState({ DeviceInfo: res.data })
-      })
-      .catch(err => console.log(err));
-  }
+    constructor(props) {
+        super(props);
     
-  handleChange = event => {
-    this.setState({
-    [event.target.name]: event.target.value
-    });
-  }
-  
-    handleSubmit = event => {
-      event.preventDefault();
-  
-      console.log ("In UserPage Getting User Data for id " + this.props.match.params.id);
-      this.setState ({UserID: this.props.match.params.id})
+    //create state
+        this.state = {
+            DeviceID: "",
+            DeviceActive: false,
+            DeviceEmulate: true,
+            DeviceInfo: {},
+            CurAirTemp:70,
+            Cur_Temp: 0,
+            Temps: []
+        };
+    }
+    // get the device info based on the input parameter
+    componentDidMount() {
+        console.log ("in componentDidMount in Emulate with user id " + this.props.match.params.id)
+        this.setState({DeviceID: this.props.match.params.id})
 
-      API.findUser(this.props.match.params.id)
-      .then(res => {
-        console.log("User found id ", res.data);
-        let UserDBID = res.data._id;
-        console.log("User id is " + UserDBID);
-  
-      })
-      .catch(err => console.log(err))
-  
+        API.updateEmulateDevice(this.props.match.params.id, this.state.DeviceEmulate)
+        .then(res => {
+            console.log ("after updateEmulateDevice got device data", res.data)
+            this.setState({ DeviceInfo: res.data })
+        })
+        .catch(err => console.log(err));
+    }
+    
+    handleChange = event => {
+        this.setState({
+        [event.target.name]: event.target.value
+        });
     }
   
     readTemp = event => {
+      event.preventDefault();
       
       // Emulate the device reading the current temperature
-      // read the current air temp then send to the router.  
-      alert ("Delete Device not available for demo");
-    };
+      // read the current air temp then send to the router. 
+      
+      alert ("in readTemp " + this.state.CurAirTemp + " for ID " + this.state.DeviceID);
 
-    
-    
+      API.updateDeviceInfo(this.props.match.params.id, this.state.CurAirTemp)
+      .then(res => {
+          console.log ("after updateDeviceInfo got device data", res.data)
+          this.setState({ DeviceInfo: res.data })
+      })
+      .catch(err => console.log(err));
+
+    }
+
     render() {
       return (
           <Container fluid>
               <Nav HeadingText={"Kennel Buddy Emulating - " + this.state.DeviceID}></Nav>
               <Container className="emulatepage">
-              <EmulateBox className="emulatepage" 
-                  DeviceInfo={this.state.DeviceInfo}
-                  DeviceStatus={Status[this.state.DeviceStatus].str}
-                  setAirTemp = {() => this.setAirTemp()} 
-                  readTemp = {() => this.readTemp()} 
-              />
+                <div className="card devicebox">
+                    <h3>Emulate Device </h3>
+                    <h4>{this.state.DeviceInfo.PetName} - {this.state.DeviceInfo.DeviceID}</h4>
+                    <div className="card-body">
+                        <div className="device">
+
+                            <div className="content">
+                            <Row>
+                                    <div className="curtemp">
+                                        <h3>Device Temp Reading: {this.state.DeviceInfo.Cur_Temp} &deg;F </h3> 
+                                    </div>
+                                </Row>
+                                <Row>
+                                    <h5>Low/High Temp Limits: {this.state.DeviceInfo.Lower_Temp}&deg;F / {this.state.DeviceInfo.Upper_Temp}&deg;F</h5> 
+                                </Row>
+                                <Row>
+                                    <div className="curtemp">
+                                        <h3>Current Air Temp: {this.state.CurAirTemp} &deg;F </h3> 
+                                    </div>
+                                </Row>
+                                <form>
+                                <Row>
+                                    <Col size="3">
+                                    </Col>
+                                    <Col size="6">
+                                        <div className="form-group">
+                                            <input className="form-control"
+                                                autofocus
+                                                value={this.state.CurAirTemp}
+                                                type="text"
+                                                name="CurAirTemp"
+                                                placeholder="Set Temp*"
+                                                required
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </Col>
+                                </Row>
+                                </form>
+
+                            </div>
+                            <div className="buttons">
+                                <button onClick={this.readTemp} className="readtemp">Read Temp</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                {/* <EmulateBox className="emulatepage" 
+                    DeviceInfo={this.state.DeviceInfo}
+                    setAirTemp = {() => this.setAirTemp()} 
+                    readTemp = {() => this.readTemp()} 
+                /> */}
               </Container>
  
 

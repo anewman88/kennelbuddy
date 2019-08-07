@@ -1,18 +1,12 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import Jumbotron from "../components/Jumbotron";
-import { Col, Row, Container } from "../components/Grid";
+//import Jumbotron from "../components/Jumbotron";
+import { Container } from "../components/Grid";
 //import UserInfo from "../components/UserInfo";
 import Nav from "../components/Nav";
-import UserBox from "../components/UserBox";
+//import UserBox from "../components/UserBox";
 import DeviceBox from "../components/DeviceBox";
 import "./css/style.css";
-
-const DebugOn = true;
-const OFFLINE = 0;
-const ONLINE = 1;
-const OFFLINE_EM = 2;
-const ONLINE_EM = 3;
 
 const Status = [ 
   {str: "Offline", color: 0}, 
@@ -108,7 +102,7 @@ class UserPage extends Component {
         alert ("Device Status is " + this.state.DeviceStatus);
 
         // update the database
-      //   API.updateDevice(this.state.DeviceDBID, this.state.DeviceEmulate)
+      //   API.updateDeviceByID(this.state.DeviceDBID, this.state.DeviceEmulate)
       //   .then(res => {
       //     console.log ("got device", res.data)
       //     this.setState({ DeviceInfo: res.data })
@@ -125,7 +119,7 @@ class UserPage extends Component {
       
 
       // update the database
-    //   API.updateDevice(this.state.DeviceDBID, this.state.DeviceEmulate)
+    //   API.updateDeviceByID(this.state.DeviceDBID, this.state.DeviceEmulate)
     //   .then(res => {
     //     console.log ("got device", res.data)
     //     this.setState({ DeviceInfo: res.data })

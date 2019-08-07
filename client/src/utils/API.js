@@ -59,8 +59,8 @@ export default {
   
   // Finds the device in the database based on DeviceID (not DBID)
   // Used only when finding device to emulate it
-  findDeviceAndEmulate: function (DeviceID) {
-    console.log ("In findDeviceAndEmulate before axios.get ", DeviceID);
+  findEmulateDevice: function (DeviceID) {
+    console.log ("In findEmulateDevice before axios.get ", DeviceID);
     return axios.get("/api/dbase/emulatedevice/", {      
             params: {
               DeviceID: DeviceID
@@ -68,10 +68,35 @@ export default {
           })
   },
 
-  // Updates device information to the database
-  updateDevice: function (id, deviceInfo) {
-    return axios.put("/api/dbase/device/" + id, deviceInfo);
+  // Updates the device in the database based on DeviceID (not DBID)
+  // Used only when finding device to emulate it
+  updateEmulateDevice: function (DeviceID, DeviceEmulate) {
+    console.log ("In updateEmulateDevice before axios.put ", DeviceID, DeviceEmulate);
+    return axios.put("/api/dbase/emulatedevice/", {
+      query: {DeviceID}, 
+      data: {DeviceEmulate}});
   },
+
+  // Updates device information to the database
+  updateDeviceInfo: function (DeviceID, updateInfo) {
+    console.log ("In updateEmulateDevice before axios.get ", DeviceID, updateInfo);
+    return axios.put("/api/dbase/device/", {
+      query: {DeviceID}, 
+      data: {updateInfo}});
+  },
+  
+
+  // Updates device information to the database by DBID
+  updateDeviceByID: function (id, updateInfo) {
+    console.log ("In updateDeviceByID before axios.put ", id, updateInfo);
+    return axios.put("/api/dbase/device/" + id, {
+      data: {updateInfo}});
+  },
+  
+  // Updates device information to the database
+  // updateDevice: function (id, deviceInfo) {
+  //   return axios.put("/api/dbase/device/" + id, deviceInfo);
+  // },
   
   // Get all the active devices in the database
   getActiveDevices: function () {

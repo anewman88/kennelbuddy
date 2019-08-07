@@ -36,7 +36,6 @@ class UserLogin extends Component {
     userLoginInfo.password = this.state.password;
     
     console.log ("In LoginPage before API.findUser ", userLoginInfo);
-    const query = "{" + "username:" + this.state.username + ", password:" + this.state.password + "}";
     API.findUser(userLoginInfo)
 //    API.findUser(query)
     .then(res => {

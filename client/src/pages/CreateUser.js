@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom"
 import API from "../utils/API";
-import Nav from "../components/Nav";
+//import Nav from "../components/Nav";
 import Jumbotron from "../components/Jumbotron";
 import UserForm from "../components/UserForm";
 import { Col, Row, Container } from "../components/Grid";

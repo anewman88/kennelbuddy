@@ -17,10 +17,10 @@ const UserBox = props => {
                             <Row>
                                 <Col size="3"></Col>
                                 <Col size="3">
-                                    <a>Name: {props.UserInfo.Name}</a> 
+                                    <p>Name: {props.UserInfo.Name}</p> 
                                 </Col>
                                 <Col size="3">
-                                    <a>Username: {props.UserInfo.username}</a> 
+                                    <p>Username: {props.UserInfo.username}</p> 
                                 </Col>
                             </Row>
                             <Row>

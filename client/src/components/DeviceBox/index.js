@@ -1,6 +1,6 @@
 import React from "react";
 import "./DeviceBox.css";
-import {Row, Col} from "../Grid"
+import {Row} from "../Grid"
 
 const DeviceBox = props => {
     return (props.DeviceInfo.length === 0) ? (
