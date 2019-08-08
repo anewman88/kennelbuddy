@@ -9,14 +9,13 @@ class EmulatePage extends Component {
     constructor(props) {
         super(props);
     
-    //create state
         this.state = {
             DeviceID: "",
             DeviceActive: false,
             DeviceEmulate: true,
+            // CurAirTemp: 70,
+            Cur_Temp: 70,
             DeviceInfo: {},
-            CurAirTemp:70,
-            Cur_Temp: 0,
             Temps: []
         };
     }
@@ -41,15 +40,15 @@ class EmulatePage extends Component {
   
     readTemp = event => {
       event.preventDefault();
-      
+
       // Emulate the device reading the current temperature
       // read the current air temp then send to the router. 
       
-      alert ("in readTemp " + this.state.CurAirTemp + " for ID " + this.state.DeviceID);
+      alert ("in readTemp " + this.state.Cur_Temp + " for ID " + this.state.DeviceID);
 
-      API.updateDeviceInfo(this.props.match.params.id, this.state.CurAirTemp)
+      API.updateDeviceTemp(this.props.match.params.id, this.state.Cur_Temp)
       .then(res => {
-          console.log ("after updateDeviceInfo got device data", res.data)
+          console.log ("after updateDeviceTemp got device data", res.data)
           this.setState({ DeviceInfo: res.data })
       })
       .catch(err => console.log(err));
@@ -77,7 +76,7 @@ class EmulatePage extends Component {
                                 </Row>
                                 <Row>
                                     <div className="curtemp">
-                                        <h3>Current Air Temp: {this.state.CurAirTemp} &deg;F </h3> 
+                                        <h3>Current Air Temp: {this.state.Cur_Temp} &deg;F </h3> 
                                     </div>
                                 </Row>
                                 <form>
@@ -88,9 +87,9 @@ class EmulatePage extends Component {
                                         <div className="form-group">
                                             <input className="form-control"
                                                 autoFocus
-                                                value={this.state.CurAirTemp}
+                                                value={this.state.Cur_Temp}
                                                 type="text"
-                                                name="CurAirTemp"
+                                                name="Cur_Temp"
                                                 placeholder="Set Temp*"
                                                 required
                                                 onChange={this.handleChange}

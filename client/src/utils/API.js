@@ -80,16 +80,25 @@ export default {
     console.log ("In updateEmulateDevice before axios.put ", DeviceID, DeviceEmulate);
     return axios.put("/api/dbase/emulatedevice/", {
       query: {DeviceID}, 
-      // data: {DeviceEmulate}
+      data: {DeviceEmulate}
     });
   },
 
   // Updates device information to the database
   updateDeviceInfo: function (DeviceID, updateInfo) {
-    console.log ("In updateEmulateDevice before axios.get ", DeviceID, updateInfo);
+    console.log ("In updateDeviceInfo before axios.put ", DeviceID, updateInfo);
     return axios.put("/api/dbase/device/", {
       query: {DeviceID}, 
-      // data: {updateInfo}
+      data: updateInfo
+    });
+  },
+  
+  // Updates device information to the database
+  updateDeviceTemp: function (DeviceID, Cur_Temp) {
+    console.log ("In updateDeviceInfo before axios.put ", DeviceID, Cur_Temp);
+    return axios.put("/api/dbase/device/", {
+      query: {DeviceID}, 
+      data: {Cur_Temp}
     });
   },
   

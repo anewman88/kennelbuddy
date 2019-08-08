@@ -38,7 +38,7 @@ class EmulatePrompt extends Component {
 
   render() {
     if (this.state.gotoEmulatePage === true) {
-      return <Redirect to={"/emulatedevice/" + this.state.DeviceID} />
+      return <Redirect to={"/deviceemulator/" + this.state.DeviceID} />
     }
 
     return (

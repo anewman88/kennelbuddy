@@ -25,7 +25,8 @@ router
 .route("/device/")
 .get(dbaseController.findAllDevices)
 .post(dbaseController.createDevice)
-.put(dbaseController.updateDeviceInfo);
+//.put(dbaseController.updateDeviceInfo);
+.put(dbaseController.updateDeviceTemp);
 
 router
   .route("/device/:id")
