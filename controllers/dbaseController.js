@@ -94,6 +94,29 @@ module.exports = {
     .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
+  remoteDeviceTemp: function(req, res) {
+    console.log ("In dbaseController.remoteDeviceTemp req.data", req.data);
+    console.log ("In dbaseController.remoteDeviceTemp req.params", req.params);
+    console.log ("In dbaseController.remoteDeviceTemp req.query", req.query);
+    console.log ("In dbaseController.remoteDeviceTemp req.body", req.body);
+    console.log ("In dbaseController.remoteDeviceTemp req.body.data", req.body.data);
+    db.Device
+    .findOneAndUpdate({DeviceID: req.params.DeviceID}, {Cur_Temp: req.params.Cur_Temp, TempMin: req.params.TempMin, TempMax: req.params.TempMax}, {new: true})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
+  getRemoteDeviceInfo: function(req, res) {
+    console.log ("In dbaseController.getRemoteDeviceInfo req.data", req.data);
+    console.log ("In dbaseController.getRemoteDeviceInfo req.params", req.params);
+    console.log ("In dbaseController.getRemoteDeviceInfo req.query", req.query);
+    console.log ("In dbaseController.getRemoteDeviceInfo req.body", req.body);
+    console.log ("In dbaseController.getRemoteDeviceInfo req.body.data", req.body.data);
+    db.Device
+    .findOneAndUpdate({ DeviceID: req.params.DeviceID }, { DeviceOnline: true, DeviceEmulate: false }, {new: true})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
   findDeviceById: function(req, res) {
     console.log ("In dbaseController.findDeviceById req.data", req.data);
     console.log ("In dbaseController.findDeviceById req.params", req.params);

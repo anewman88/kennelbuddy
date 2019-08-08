@@ -34,4 +34,12 @@ router
 //  .put(dbaseController.updateDeviceById);
 //  .delete(dbaseController.removeDevice);
 
-module.exports = router;
+router
+  .route("/remotedevice/:DeviceID/:Cur_Temp/:TempMin/:TempMax")
+  .put(dbaseController.remoteDeviceTemp);
+
+router
+  .route("/remotedevice/:DeviceID")
+  .get(dbaseController.getRemoteDeviceInfo);
+
+  module.exports = router;
