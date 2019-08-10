@@ -45,7 +45,6 @@ if response.status_code != SUCCESS_CODE:
 # Get and store the response data    
 DeviceInfo = response.json()
 
-
 if DebugON:
     for key, val in DeviceInfo.items():
         print (key, val)
