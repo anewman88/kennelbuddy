@@ -19,9 +19,9 @@ class UserPage extends Component {
   state = {
       UserID: "",
       DeviceDBID: "",
-      DeviceActive: false,
-      DeviceEmulate: false,
-      DeviceStatus: 0,
+      // DeviceActive: false,
+      // DeviceEmulate: false,
+      // DeviceStatus: 0,
       UserInfo: [],
       DeviceInfo: [],
       CurTemp: 0,
@@ -74,16 +74,22 @@ class UserPage extends Component {
       .catch(err => console.log(err))
     }
   
+    refreshDevice = event => {
+      console.log ("in UserPage.refreshDevice click " + this.state.DeviceDBID)
+      API.findDeviceById(this.state.DeviceDBID)
+      .then(res => {
+        console.log ("got device", res.data)
+        this.setState({ DeviceInfo: res.data })
+      })
+    }
+
     removeDevice = event => {
       //Delete the device from the database
       alert ("Delete Device not available for demo");
     };
 
     deactivateDevice = event => {
-      console.log ("in UserPage deactivateDevice clicked " + this.state.DeviceDBID)
-      
-      // set DeviceActive flag to false
-      this.setState({ DeviceActive: false});
+      alert ("Deactivate Device not available for demo");
     };
 
     render() {
@@ -94,7 +100,7 @@ class UserPage extends Component {
               {/* <UserBox className="userpage" UserInfo={this.state.UserInfo} /> */}
               <DeviceBox className="userpage" 
                   DeviceInfo={this.state.DeviceInfo}
-                  DeviceStatus={Status[this.state.DeviceStatus].str}
+                  refreshDevice = {() => this.refreshDevice()}
                   removeDevice = {() => this.removeDevice()}
                   deactivateDevice = {() => this.deactivateDevice()} 
               />

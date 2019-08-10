@@ -26,7 +26,8 @@ class CreateUser extends Component {
         Phone1: '',
         Phone2: '',
         EC_Name: '',
-        EC_Phone: '',
+        EC_Phone1: '',
+        EC_Phone2: '',
         Comment: '',
         PetName: '',
         PetImage:'',
@@ -36,6 +37,7 @@ class CreateUser extends Component {
         DeviceOnline: false,
         Upper_Temp: 80,
         Lower_Temp: 65,
+        Cur_Temp: 0,
         Interval: 10,  // in seconds
         gotoUserPage: false
       };

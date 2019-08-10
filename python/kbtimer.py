@@ -49,9 +49,9 @@ else:
     
 # Initialize the device with the server
 if LocalHost:
-    response = requests.get("http://localhost:3000/api/dbase/remotedevice/KB1001")
+    response = requests.get("http://localhost:3000/api/dbase/remotedevice/"+DeviceID)
 else:
-    response = requests.get("http://immense-forest-39131.herokuapp.com/api/dbase/remotedevice/KB1001")
+    response = requests.get("http://immense-forest-39131.herokuapp.com/api/dbase/remotedevice/"+DeviceID)
 
 if response.status_code != SUCCESS_CODE:
     print ("Device initialization failed with response code: ", response)
@@ -65,8 +65,12 @@ if DebugON:
         print (key, val, type(val))
 
 def readTemp():
-    #CurTemp = use library read here
-    CurTemp = random.randint(17,30)
+    if (LocalHost):
+        CurTemp = random.randint(17,30)
+    else:
+        #CurTemp = use library read here
+        CurTemp = 0
+
     return (CurTemp)
 
 def ReadAndUpdateTemp(dev):
