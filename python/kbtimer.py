@@ -109,7 +109,6 @@ def ReadAndUpdateTemp(dev):
 
         if DeviceInfo['DeviceOnline'] == False:   
             if DebugON: print("Device Taken Offline.  Exiting program")
-#            rt.stop() # stop the timer and exit the program
             sys.exit(0)
 
     
