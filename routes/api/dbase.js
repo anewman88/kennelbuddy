@@ -11,28 +11,21 @@ router
 
 router
   .route("/user/:id")
+  .delete(dbaseController.removeUser)
   .get(dbaseController.findUserById)
   .put(dbaseController.updateUser);
-//  .delete(dbaseController.removeUser)
-
-// device collection routes
-router
-.route("/emulatedevice/")
-.get(dbaseController.findEmulateDevice)
-.put(dbaseController.updateEmulateDevice);
 
 router
 .route("/device/")
-.get(dbaseController.findAllDevices)
+.get(dbaseController.findAllOnlineDevices)
 .post(dbaseController.createDevice)
 //.put(dbaseController.updateDeviceInfo);
-.put(dbaseController.updateDeviceTemp);
 
 router
   .route("/device/:id")
-  .get(dbaseController.findDeviceById);
+  .get(dbaseController.findDeviceById)
 //  .put(dbaseController.updateDeviceById);
-//  .delete(dbaseController.removeDevice);
+  .delete(dbaseController.removeDevice);
 
 router
   .route("/remotedevice/:DeviceID/:Cur_Temp/:TempMin/:TempMax")

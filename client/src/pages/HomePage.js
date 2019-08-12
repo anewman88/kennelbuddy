@@ -6,24 +6,6 @@ import { Col, Row, Container } from "../components/Grid";
 import "./css/style.css";
 
 class HomePage extends Component {
-    constructor(props) {
-
-    super(props);
-
-    this.state = {
-      loggedIn: null,
-      loading: false,
-      error: null,
-      initialTab: null,
-      recoverPasswordSuccess: null,
-      UserID: "",
-      DeviceID: "",
-      DeviceActive: false,
-      CurTemp: 0,
-      Temps: []
-    };
-
-  }
 
     render() {
       return (
@@ -56,8 +38,5 @@ class HomePage extends Component {
     )
   }
 }
-
-
-
 
 export default HomePage

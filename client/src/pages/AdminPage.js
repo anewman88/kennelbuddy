@@ -34,13 +34,6 @@ class AdminPage extends Component {
                 <Nav HeadingText={"Administative Page"}></Nav>
                 <Jumbotron> </Jumbotron>
                 <Container>
-                <Row>
-                    <Col size="5"></Col>
-                    <Col className="justify-content-center" size="2">
-                        <a className="nav-link" href="/emulate" ><button type="button" className="btn btn-info text-white">Emulate</button></a>
-                    </Col>
-                </Row>
-
                   <p>Put device info here</p>
                   {/* <DisplayDevices ActiveDeviceList={this.state.ActiveDeviceList} handleDeleteButton={this.handleDeleteButton} /> */}
                 </Container>

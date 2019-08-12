@@ -23,16 +23,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  updateDeviceByID: function(req, res) {
-    console.log ("In dbaseController.updateDeviceById req.data", req.data);
-    console.log ("In dbaseController.updateDeviceById req.params", req.params);
-    console.log ("In dbaseController.updateDeviceById req.query", req.query);
-    console.log ("In dbaseController.updateDeviceById req.body", req.body);
-    db.Device
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
+  // updateDeviceById: function(req, res) {
+  //   console.log ("In dbaseController.updateDeviceById req.data", req.data);
+  //   console.log ("In dbaseController.updateDeviceById req.params", req.params);
+  //   console.log ("In dbaseController.updateDeviceById req.query", req.query);
+  //   console.log ("In dbaseController.updateDeviceById req.body", req.body);
+  //   db.Device
+  //     .findOneAndUpdate({ _id: req.params.id }, req.body)
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // },
 
   findUser: function(req, res) {
     console.log ("In dbaseController.findUser req.data", req.data);
@@ -55,6 +55,7 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   removeUser: function(req, res) {
     console.log ("In dbaseController.removeUser req.data", req.data);
     console.log ("In dbaseController.removeUser req.params", req.params);
@@ -66,12 +67,6 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // findAllUser: function(req, res) {
-  //   db.User
-  //     .find(req.query)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
 
   // Define the methods for the device collection
   createDevice: function(req, res) {
@@ -81,20 +76,8 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  updateDeviceTemp: function(req, res) {
-    console.log ("In dbaseController.updateDeviceInfo req.data", req.data);
-    console.log ("In dbaseController.updateDeviceInfo req.params", req.params);
-    console.log ("In dbaseController.updateDeviceInfo req.query", req.query);
-    console.log ("In dbaseController.updateDeviceInfo req.body", req.body);
-    console.log ("In dbaseController.updateDeviceInfo req.body.data", req.body.data);
-    console.log ("In dbaseController.updateDeviceInfo req.body.data.updateInfo", req.body.data.updateInfo);
-    db.Device
-//    .findOneAndUpdate(req.body.query, { Cur_Temp: 80 }, {new: true})
-    .findOneAndUpdate(req.body.query, req.body.data, {new: true})
-    .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
 
+  // done by remote device running Python program
   remoteDeviceTemp: function(req, res) {
     console.log ("In dbaseController.remoteDeviceTemp req.data", req.data);
     console.log ("In dbaseController.remoteDeviceTemp req.params", req.params);
@@ -106,6 +89,8 @@ module.exports = {
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   },
+
+  // done by remote device running Python program
   getRemoteDeviceInfo: function(req, res) {
     console.log ("In dbaseController.getRemoteDeviceInfo req.data", req.data);
     console.log ("In dbaseController.getRemoteDeviceInfo req.params", req.params);
@@ -117,6 +102,7 @@ module.exports = {
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   },
+
   findDeviceById: function(req, res) {
     console.log ("In dbaseController.findDeviceById req.data", req.data);
     console.log ("In dbaseController.findDeviceById req.params", req.params);
@@ -127,26 +113,7 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  updateEmulateDevice: function(req, res) {
-    console.log ("In dbaseController.updateEmulateDevice req.data", req.data);
-    console.log ("In dbaseController.updateEmulateDevice req.params", req.params);
-    console.log ("In dbaseController.updateEmulateDevice req.query", req.query);
-    console.log ("In dbaseController.updateEmulateDevice req.body", req.body);
-    db.Device
-      .findOneAndUpdate(req.body.query, req.body.data, {new: true})
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  findEmulateDevice: function(req, res) {
-    console.log ("In dbaseController.findEmulateDevice req.data", req.data);
-    console.log ("In dbaseController.findEmulateDevice req.params", req.params);
-    console.log ("In dbaseController.findEmulateDevice req.query", req.query);
-    console.log ("In dbaseController.findEmulateDevice req.body", req.body);
-    db.Device
-      .findOne(req.params.query)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
+
   removeDevice: function(req, res) {
     db.Device
       .findById({ _id: req.params.id })
@@ -154,7 +121,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findAllDevices: function(req, res) {
+
+  findAllOnlineDevices: function(req, res) {
+    console.log ("In dbaseController.findAllOnlineDevices req.data", req.data);
+    console.log ("In dbaseController.findAllOnlineDevices req.params", req.params);
+    console.log ("In dbaseController.findAllOnlineDevices req.query", req.query);
+    console.log ("In dbaseController.findAllOnlineDevices req.body", req.body);
     db.Device
       .find({DeviceOnline: true})
       .then(dbModel => res.json(dbModel))

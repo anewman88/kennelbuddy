@@ -14,10 +14,10 @@ export default {
   },
 
   // Updates device information to the database by DBID
-  updateDeviceByID: function (id, updateInfo) {
-    console.log ("In updateDeviceByID before axios.put " + id, updateInfo);
-    return axios.put("/api/dbase/device/" + id, updateInfo);
-  },
+  // updateDeviceById: function (id, updateInfo) {
+  //   console.log ("In updateDeviceById before axios.put " + id, updateInfo);
+  //   return axios.put("/api/dbase/device/" + id, updateInfo);
+  // },
   
   // Finds the user in the database based on username and password
   findUser: function (userInfo) {
@@ -36,18 +36,8 @@ export default {
     return axios.get("/api/dbase/user/" + id)
   },
  
-  // Finds the user in the database based on login info
-  // findUser: function (id, userInfo) {
-  //   return axios.get("/api/dbase/user/" + id, {
-  //     params: {
-  //       username: userInfo.username,
-  //       password: userInfo.password
-  //     } 
-  //   })
-  // },
-  
   // Delete user information specified by id from the database
-  deleteUser: function (id, userInfo) {
+  removeUser: function (id, userInfo) {
     console.log ("In deleteUser before axios.delete id:" + id, userInfo);
     return axios.delete("/api/dbase/user/" + id, userInfo);
   },
@@ -63,52 +53,19 @@ export default {
     return axios.get("/api/dbase/device/" + id);
   },
   
-  // Finds the device in the database based on DeviceID (not DBID)
-  // Used only when finding device to emulate it
-  findEmulateDevice: function (DeviceID) {
-    console.log ("In findEmulateDevice before axios.get ", DeviceID);
-    return axios.get("/api/dbase/emulatedevice/", {      
-            params: {
-              DeviceID: DeviceID
-            } 
-          })
-  },
-
-  // Updates the device in the database based on DeviceID (not DBID)
-  // Used only when finding device to emulate it
-  updateEmulateDevice: function (DeviceID, DeviceEmulate) {
-    console.log ("In updateEmulateDevice before axios.put ", DeviceID, DeviceEmulate);
-    return axios.put("/api/dbase/emulatedevice/", {
-      query: {DeviceID}, 
-      data: {DeviceEmulate}
-    });
-  },
-
-  // Updates device information to the database
-  updateDeviceInfo: function (DeviceID, updateInfo) {
-    console.log ("In updateDeviceInfo before axios.put ", DeviceID, updateInfo);
-    return axios.put("/api/dbase/device/", {
-      query: {DeviceID}, 
-      data: updateInfo
-    });
-  },
-  
-  // Updates device information to the database
-  updateDeviceTemp: function (DeviceID, Cur_Temp) {
-    console.log ("In updateDeviceInfo before axios.put ", DeviceID, Cur_Temp);
-    return axios.put("/api/dbase/device/", {
-      query: {DeviceID}, 
-      data: {Cur_Temp}
-    });
-  },
-  
   // Get all the active devices in the database
   getActiveDevices: function () {
     return axios.get("/api/dbase/device/");
   },
 
   // Deletes the device specified by id from the database
-  deleteDevice: function(id) {
+  removeDevice: function(id) {
     return axios.delete("/api/dbase/device/" + id);
+  },
+
+  // Finds all the devices online in the database based on DeviceID and DeviceOnline: true
+  findAllDevicesOnline: function () {
+    console.log ("In findAllDevicesOnline before axios.get ");
+    return axios.get("/api/dbase/device/")
   }
 };

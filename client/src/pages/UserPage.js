@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import { Container } from "../components/Grid";
-//import UserInfo from "../components/UserInfo";
 import Nav from "../components/Nav";
-//import UserBox from "../components/UserBox";
 import DeviceBox from "../components/DeviceBox";
 import "./css/style.css";
 
