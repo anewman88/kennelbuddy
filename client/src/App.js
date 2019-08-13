@@ -18,10 +18,6 @@ function App() {
           <Route exact path="/createuser/" component={CreateUser} />
           <Route exact path="/adminlogin/" component={AdminPage} />
           <Route exact path="/userpage/:id" component={UserPage} />
-          {/* <Route exact path="/updatedevicetemp/:DeviceID/:Cur_Temp" component={UpdateDeviceTemp} />
-          <Route exact path="/updatedevicetest/:DeviceID/:Cur_Temp" render={() => {
-                console.log ("In /updatedevicetemp route");
-                return; } }/> */}
           <Route component={NoMatch} />
         </Switch>
       </div>

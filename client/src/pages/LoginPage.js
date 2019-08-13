@@ -4,6 +4,8 @@ import API from "../utils/API.js";
 import { Col, Row, Container } from "../components/Grid";
 import "./css/Login.css";
 
+const DebugOn = true;
+
 class UserLogin extends Component {
   constructor(props) {
     super(props);
@@ -35,13 +37,12 @@ class UserLogin extends Component {
     userLoginInfo.username = this.state.username;
     userLoginInfo.password = this.state.password;
     
-    console.log ("In LoginPage before API.findUser ", userLoginInfo);
+    if (DebugOn) console.log ("In LoginPage before API.findUser ", userLoginInfo);
     API.findUser(userLoginInfo)
 //    API.findUser(query)
     .then(res => {
-      console.log("User found id ", res.data);
+      if (DebugOn) console.log("User found id ", res.data);
       let UserDBID = res.data._id;
-      console.log("User id is " + UserDBID);
 
       // go to UserPage
       this.setState({gotoUserPage: true, UserDBID: res.data._id});

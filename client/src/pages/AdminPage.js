@@ -1,16 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Nav from "../components/Nav";
-import Jumbotron from "../components/Jumbotron";
 import { Container, Row, Col } from "../components/Grid";
-
-var bgColors = { "Default": "#81b71a",
-                    "Blue": "#00B1E1",
-                    "Cyan": "#37BC9B",
-                    "Green": "#8CC152",
-                    "Red": "#E9573F",
-                    "Yellow": "#F6BB42",
-};
 
 class AdminPage extends Component {
     state = {

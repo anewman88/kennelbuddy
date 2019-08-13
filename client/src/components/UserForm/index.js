@@ -231,7 +231,7 @@ const UserForm = props => {
                         value={props.Comment}
                         type="text"
                         name="Comment"
-                        placeholder="Comments or Instructions"
+                        placeholder="Authorization Key/Code"
                         onChange={props.ChangeHandler}
                     />
                 </div>

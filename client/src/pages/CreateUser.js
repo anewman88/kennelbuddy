@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom"
 import API from "../utils/API";
-//import Nav from "../components/Nav";
 import Jumbotron from "../components/Jumbotron";
 import UserForm from "../components/UserForm";
 import { Col, Row, Container } from "../components/Grid";
 import "./css/Login.css";
-//import { set } from "mongoose";
+
+const DebugOn = true;
 
 class CreateUser extends Component {
 
@@ -53,12 +53,11 @@ class CreateUser extends Component {
         userCreateInfo.username = this.state.username;
         userCreateInfo.password = this.state.password;
         
-        console.log('In CreateUser before API.createUser: ', userCreateInfo);
+        if (DebugOn) console.log('In CreateUser before API.createUser: ', userCreateInfo);
         API.createUser(userCreateInfo)
           .then(res => {
-            console.log("User created return data is ", res.data);
+            if (DebugOn) console.log("User created return data is ", res.data);
             this.setState ({UserDBID: res.data._id})
-            console.log("User id is " + this.state.UserDBID);
           })
           .catch(err => console.log(err))
 
@@ -75,57 +74,58 @@ class CreateUser extends Component {
 
     SubmitHandler = (event) => {
       event.preventDefault();
+      // Create a new user only if the authorization key matches
 
-      // write the user information to the database
-      const userInfo = {};
-      for (const field in this.state) {
-        console.log ("in for, assigning ", field);
-        userInfo[field] = this.state[field];
-      }
-      console.log('-->', userInfo);
-      API.updateUser(this.state.UserDBID, userInfo)
-        .then(res => {
-          console.log("User info saved return data is ", res.data);
-          this.setState ({UserDBID: res.data._id})
-          console.log("User id is " + this.state.UserDBID);
+      if (this.state.Comment === this.state.DeviceID) {
 
-          // Create the device in the database
-          const deviceInfo = {};
-          deviceInfo.DeviceID = userInfo.DeviceID;
-          deviceInfo.DeviceOnline = false;
-          deviceInfo.UserDBID = this.state.UserDBID;
-          deviceInfo.PetName = userInfo.PetName;
-          // correct the pet image path
-          deviceInfo.PetImage = userInfo.PetImage.replace("C:\\fakepath", "..\\images");
-          deviceInfo.Upper_Temp = userInfo.Upper_Temp;
-          deviceInfo.Lower_Temp = userInfo.Lower_Temp;
-          deviceInfo.Interval = userInfo.Interval;
-          deviceInfo.Cur_Temp = 0;
-          console.log ("about to call createDevice with ", deviceInfo);
-          API.createDevice(deviceInfo)
+        // write the user information to the database
+        const userInfo = {};
+        for (const field in this.state) {
+          if (DebugOn) console.log ("in for, assigning ", field);
+          userInfo[field] = this.state[field];
+        }
+        if (DebugOn) console.log('Input UserInfo: ', userInfo);
+        API.updateUser(this.state.UserDBID, userInfo)
           .then(res => {
-            console.log("Device info saved return data is ", res.data);
-            let DeviceID = res.data._id;
-            console.log("Device id is " + DeviceID);
-            console.log ("Device res.data._id is", res.data._id)
-            this.setState ({DeviceDBID: DeviceID})
-            console.log("Device dbid is " + this.state.DeviceDBID);        
-            userInfo.DeviceDBID = res.data._id;
+            if (DebugOn) console.log("User info saved return data is ", res.data);
+            this.setState ({UserDBID: res.data._id})
 
-            // Update the user record with the device ID
-            API.updateUser(this.state.UserDBID, userInfo)
+            // Create the device in the database
+            const deviceInfo = {};
+            deviceInfo.DeviceID = userInfo.DeviceID;
+            deviceInfo.DeviceOnline = false;
+            deviceInfo.UserDBID = this.state.UserDBID;
+            deviceInfo.PetName = userInfo.PetName;
+            // correct the pet image path
+            deviceInfo.PetImage = userInfo.PetImage.replace("C:\\fakepath", "..\\images");
+            deviceInfo.Upper_Temp = userInfo.Upper_Temp;
+            deviceInfo.Lower_Temp = userInfo.Lower_Temp;
+            deviceInfo.TempMax = 0;
+            deviceInfo.TempMin = 500;
+            deviceInfo.Interval = userInfo.Interval;
+            deviceInfo.Cur_Temp = 0;
+            API.createDevice(deviceInfo)
             .then(res => {
-              console.log("DeviceDBID saved in User info - return data is ", res.data);
-            })
-            .catch(err => console.log(err))     
+              if (DebugOn) console.log("Device info saved return data is ", res.data);
+              let DeviceID = res.data._id;
+              this.setState ({DeviceDBID: DeviceID})
+              userInfo.DeviceDBID = res.data._id;
 
+              // Update the user record with the device ID
+              API.updateUser(this.state.UserDBID, userInfo)
+              .then(res => {
+                if (DebugOn) console.log("DeviceDBID saved in User info - return data is ", res.data);
+              })
+              .catch(err => console.log(err))     
+
+            })
+            .catch(err => console.log(err))
           })
           .catch(err => console.log(err))
-        })
-        .catch(err => console.log(err))
 
-        // go to UserPage
-        this.setState({gotoUserPage: true});
+          // go to UserPage
+          this.setState({gotoUserPage: true});
+      } // if (this.state.Comment === this.state.DeviceID)
     }
 
     ChangeHandler = (event) => {

@@ -5,21 +5,13 @@ import Nav from "../components/Nav";
 import DeviceBox from "../components/DeviceBox";
 import "./css/style.css";
 
-const Status = [ 
-  {str: "Offline", color: 0}, 
-  {str: "Online", color: 0},
-  {str: "Offline Em", color: 0},
-  {str: "Online Em", color: 0}
-];
+const DebugOn = true;
 
 class UserPage extends Component {
   //create state
   state = {
       UserID: "",
       DeviceDBID: "",
-      // DeviceActive: false,
-      // DeviceEmulate: false,
-      // DeviceStatus: 0,
       UserInfo: [],
       DeviceInfo: [],
       CurTemp: 0,
@@ -27,22 +19,22 @@ class UserPage extends Component {
   };
   // get the user info based on the input parameter 
   componentDidMount() {
-    console.log ("in UserPage with user id " + this.props.match.params.id)
+    if (DebugOn) console.log ("in UserPage with user id " + this.props.match.params.id)
     const UserDBID = this.props.match.params.id;
     this.setState ({UserID: UserDBID})
 
     API.findUserById(UserDBID)
       .then(res => {
-        console.log ("got user data", res.data)
+        if (DebugOn) console.log ("got user data", res.data)
         this.setState({ UserInfo: res.data })
         
         // Get the user's device information
         this.setState ({DeviceDBID: res.data.DeviceDBID})
 
-        console.log ("in UserPage looking for device " + this.state.DeviceDBID)
+        if (DebugOn) console.log ("in UserPage looking for device " + this.state.DeviceDBID)
         API.findDeviceById(this.state.DeviceDBID)
         .then(res => {
-          console.log ("got device", res.data)
+          if (DebugOn) console.log ("got device", res.data)
           this.setState({ DeviceInfo: res.data })
         })
         .catch(err => console.log(err));
@@ -59,35 +51,33 @@ class UserPage extends Component {
     handleSubmit = event => {
       event.preventDefault();
   
-      console.log ("In UserPage Getting User Data for id " + this.props.match.params.id);
+      if (DebugOn) console.log ("In UserPage Getting User Data for id " + this.props.match.params.id);
       this.setState ({UserID: this.props.match.params.id})
 
       API.findUser(this.props.match.params.id)
       .then(res => {
-        console.log("User found id ", res.data);
+        if (DebugOn) console.log("User found id ", res.data);
         let UserDBID = res.data._id;
-        console.log("User id is " + UserDBID);
-  
       })
       .catch(err => console.log(err))
     }
   
     refreshDevice = event => {
-      console.log ("in UserPage.refreshDevice click " + this.state.DeviceDBID)
+      if (DebugOn) console.log ("in UserPage.refreshDevice click " + this.state.DeviceDBID)
       API.findDeviceById(this.state.DeviceDBID)
       .then(res => {
-        console.log ("got device", res.data)
+        if (DebugOn) console.log ("got device", res.data)
         this.setState({ DeviceInfo: res.data })
       })
     }
 
     removeDevice = event => {
       //Delete the device from the database
-      alert ("Delete Device not available for demo");
+      alert ("Delete Device "+ this.state.DeviceInfo.DeviceID +" not available for demo");
     };
 
     deactivateDevice = event => {
-      alert ("Deactivate Device not available for demo");
+      alert ("Deactivate Device "+ this.state.DeviceInfo.DeviceID +" not available for demo");
     };
 
     render() {
