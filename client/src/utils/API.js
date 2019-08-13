@@ -64,8 +64,8 @@ export default {
   },
 
   // Finds all the devices online in the database based on DeviceID and DeviceOnline: true
-  findAllDevicesOnline: function () {
-    console.log ("In findAllDevicesOnline before axios.get ");
+  findAllOnlineDevices: function () {
+    console.log ("In findAllOnlineDevices before axios.get ");
     return axios.get("/api/dbase/device/")
   }
 };
