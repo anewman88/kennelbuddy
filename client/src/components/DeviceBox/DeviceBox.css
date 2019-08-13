@@ -1,18 +1,18 @@
 .devicebox {
     margin: auto;
-    width: 400px;
-    border: ridge, 10px;
+    width: 430px;
+    border: ridge, 8px;
     background-color: lightblue;
 }
 
 h3, h4, h5 {
     margin: auto;
-    padding: 10px;
+    padding: 8px;
     text-align: center;
 }
 .curtemp {
     margin: auto;
-    padding: 10px;
+    /* padding: 8px; */
     background-color: rgb(8, 209, 8);
     text-align: center;
 }
@@ -20,13 +20,13 @@ h3, h4, h5 {
 .devstatus {
     margin: auto;
     text-align: center;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
 }
 
 button {
-    margin: 10px;
+    margin: 8px;
     margin-left: 18px;
-    padding: 10px;
+    padding: 5px;
 }
 
 .actionbuttons {

@@ -22,7 +22,7 @@ const DeviceBox = props => {
     ) : (
             <div className="card devicebox">
                     <h3>Kennel Buddy Device Info</h3>
-                    <h4>{props.DeviceInfo.PetName} - {props.DeviceInfo.DeviceID}</h4>
+                    <h5>{props.DeviceInfo.PetName} - {props.DeviceInfo.DeviceID}</h5>
                 <div className="card-body">
                     <div className="device">
 
