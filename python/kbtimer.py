@@ -9,6 +9,7 @@ from time import sleep
 
 #Constant and Variable Definitions
 LocalHost = True
+Emulate = True
 SUCCESS_CODE = 200
 DebugON = False
 validGPIO = [13, 19, 26]
@@ -65,7 +66,7 @@ if DebugON:
         print (key, val, type(val))
 
 def readTemp():
-    if (LocalHost):
+    if (Emulate):
         CurTemp = random.randint(17,30)
     else:
         #CurTemp = use library read here

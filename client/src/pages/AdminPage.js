@@ -5,13 +5,25 @@ import { Container, Row, Col } from "../components/Grid";
 
 class AdminPage extends Component {
     state = {
-        ActiveDevicesList: []
+        ActiveDevicesList: [],
+        timerCnt: 0
     };
 
-    //when this component mounts, get a list of all the active Devices 
+    forceScreenUpdate() {
+        this.setState(prevState => ({
+          timerCnt: prevState.timerCnt + 1
+        }));
+      }
 
+    //when this component mounts, get a list of all the active Devices 
+    // Setup screen refresh timer
     componentDidMount() {
         this.loadDevices();
+        this.timerCnt = setInterval(() => this.forceScreenUpdate(), 20000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.forceScreenUpdate);
     }
 
     loadDevices = () => {

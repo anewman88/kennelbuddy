@@ -5,6 +5,10 @@ import Nav from "../components/Nav";
 import DeviceBox from "../components/DeviceBox";
 import "./css/style.css";
 
+// const io = require('socket.io-client');
+// var socket = io();
+// var socketDeviceID = '';
+
 const DebugOn = true;
 
 class UserPage extends Component {
@@ -15,13 +19,27 @@ class UserPage extends Component {
       UserInfo: [],
       DeviceInfo: [],
       CurTemp: 0,
-      Temps: []
+      forceRefresh: 0,
+      Temps: [],
+      timerCnt: 0
   };
+
+  forceScreenUpdate() {
+    this.setState(prevState => ({timerCnt: prevState.timerCnt + 1}));
+    console.log ("In forceScreenUpdate");
+    API.findDeviceById(this.state.DeviceDBID)
+    .then(res => {
+      if (DebugOn) console.log ("got device", res.data)
+      this.setState({ DeviceInfo: res.data })
+    })
+  }
+
   // get the user info based on the input parameter 
   componentDidMount() {
     if (DebugOn) console.log ("in UserPage with user id " + this.props.match.params.id)
+
     const UserDBID = this.props.match.params.id;
-    this.setState ({UserID: UserDBID})
+    this.setState ({UserID: UserDBID});
 
     API.findUserById(UserDBID)
       .then(res => {
@@ -36,12 +54,35 @@ class UserPage extends Component {
         .then(res => {
           if (DebugOn) console.log ("got device", res.data)
           this.setState({ DeviceInfo: res.data })
+
+          // Set the screen refresh time to the device interval time
+          const screenRefreshInterval = (res.data.Interval * 1000);
+          if (DebugOn) console.log ("Screen Refresh Interval is "+ screenRefreshInterval);
+          this.timerCnt = setInterval(() => this.forceScreenUpdate(), screenRefreshInterval);
+       
+          // Connect the socket for this DeviceID
+        //   var DeviceID = this.state.DeviceInfo.DeviceID;
+        //   console.log ("before connect socket for device ", DeviceID);
+        //   socket.on('connect', function() {
+        //     // Connected, sign-up for to receive messages for this device
+        //     console.log ("Connecting socket for device ", DeviceID);
+        //     socket.emit('device', DeviceID);
+        //   });
+
+        //   socket.on(DeviceID, function(msg){
+        //     console.log ("Received a message from the server "+msg);
+        //     this.setState ({forceRefresh: 12});
+        //     });
         })
         .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
     }
     
+    componentWillUnmount() {
+      clearInterval(this.forceScreenUpdate);
+    }
+
     handleChange = event => {
       this.setState({
         [event.target.name]: event.target.value
@@ -93,8 +134,6 @@ class UserPage extends Component {
                   deactivateDevice = {() => this.deactivateDevice()} 
               />
               </Container>
- 
-
           </Container>
       )
   }

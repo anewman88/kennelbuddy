@@ -200,7 +200,7 @@ class CreateUser extends Component {
                       </div>
                     </Col>
                 </Row>
-                <button type="submit">Login</button>
+                <button type="submit">Create</button>
               </form>
             </Container>
           </div>
