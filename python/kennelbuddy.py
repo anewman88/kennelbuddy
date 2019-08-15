@@ -3,14 +3,19 @@ import requests
 import json
 import sys
 import Adafruit_DHT
-import time
+from time import sleep
 
 #Constant and Variable Definitions
 SUCCESS_CODE = 200
-DebugON = False
+DebugON = True
+LOOPMAX = 1000
+LoopCnt = 0
+
 # Sensor should be set to Adafruit_DHT.DHT11,
 # Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
 sensor = Adafruit_DHT.DHT11
+validGPIO = [13, 19, 26]
+GPIOpin = validGPIO[0]
 
 #verify the command line inputs
 argv_cnt = len(sys.argv)
@@ -25,41 +30,81 @@ if argv_cnt >= 3:
     # Get the DeviceID
     DeviceID = sys.argv[1]
     # Get the GPIO pin
-    GPIOpin = sys.argv[2]
+    GPIOpin = int(sys.argv[2])
+    if DebugON: print (GPIOpin, type(GPIOpin))
+    if GPIOpin not in validGPIO:
+        print ("Invalid GPIOpin ", GPIOpin)
+        sys.exit(1)
 
     # Check for DebugON flag
-    if argv_cnt >= 3:
+    if argv_cnt >= 4:
         DebugON = sys.argv[3]
 
 else:
     print ("Not enough arguments.  Usage: python3 <Filename.py> <DeviceID> <GPIO pin> [<DebugON boolean>]")
     sys.exit(1)
     
+def readTemp():
+    humidity, temperature = Adafruit_DHT.read(sensor, GPIOpin)
+    if DebugON: 
+            if temperature is not None:  # bad reading.  Do not update
+                print('Pin: {0:d} Temp={1:0.1f}*C %'.format(GPIOpin, temperature))
+    return (temperature)
+        
+def ReadAndUpdateTemp(dev):
+    if DebugON: print ("In ReadAndUpdateTemp ")
+
+    Celcius = readTemp()
+    if DebugON: print ("Device Temp in Celcius: ", Celcius)
+
+    if Celcius == None:  # bad reading.  Do not update
+        return
+    else:
+        # convert to deg F and round to whole number before returning
+        dev['Cur_Temp'] = round(9.0/5.0 * Celcius + 32)
+        if DebugON: print("Current Temp calculated", Celcius, dev['Cur_Temp'])
+
+        # Test for and set new min and max temperatures
+        if dev['Cur_Temp'] > dev['TempMax']: dev['TempMax'] = dev['Cur_Temp']
+        if dev['Cur_Temp'] < dev['TempMin']: dev['TempMin'] = dev['Cur_Temp']
+
+        # send the current temps to the server to be stored
+        PutStr="http://immense-forest-39131.herokuapp.com/api/dbase/remotedevice/"+ DeviceID +"/"+ \
+            str(dev['Cur_Temp']) +"/"+ str(dev['TempMin']) +"/"+ str(dev['TempMax'])
+        if DebugON: print(PutStr)
+        response = requests.put(PutStr)
+            
+        if response.status_code == SUCCESS_CODE:
+            # Retrieve and store the JSON response data    
+            DeviceInfo = response.json()
+            if DebugON: print (DeviceInfo)
+
+        if DeviceInfo['DeviceOnline'] == False:   
+            if DebugON: print("Device Taken Offline.  Exiting program")
+            sys.exit(0)
+
 # Initialize the device with the server
-response = requests.get("http://immense-forest-39131.herokuapp.com/api/dbase/remotedevice/KB1001")
+response = requests.get("http://immense-forest-39131.herokuapp.com/api/dbase/remotedevice/"+DeviceID)
 
 if response.status_code != SUCCESS_CODE:
     print ("Device initialization failed with response code: ", response)
     sys.exit(1)
-    
-# Get and store the response data    
+
+# Retrieve and store the JSON response data    
 DeviceInfo = response.json()
 
 if DebugON:
     for key, val in DeviceInfo.items():
         print (key, val)
 
-sys.exit(0)
+# Set up the interval timer
+print ("Setting up Timer with IntervalTime: ", DeviceInfo['Interval'])
 
-response = requests.put("http://immense-forest-39131.herokuapp.com/api/dbase/remotedevice/KB1001/68/55/95")
+LoopCnt = 0
+while LoopCnt <= LOOPMAX:
+    sleep(DeviceInfo['Interval'])
+    ReadAndUpdateTemp(DeviceInfo)
+    LoopCnt = LoopCnt + 1
+    if DebugON:
+        print("LoopCnt ", LoopCnt)
 
-if response == SUCCESS_CODE:
-    
-    if DebugON: print(response)
-
-
-    data = response.json()
-
-    # response.json() returns a "dictionary"
-
-    print(data)
