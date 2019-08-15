@@ -13,13 +13,14 @@ class AdminPage extends Component {
         this.setState(prevState => ({
           timerCnt: prevState.timerCnt + 1
         }));
+        this.loadDevices();
       }
 
     //when this component mounts, get a list of all the active Devices 
     // Setup screen refresh timer
     componentDidMount() {
         this.loadDevices();
-        this.timerCnt = setInterval(() => this.forceScreenUpdate(), 20000);
+        this.timerCnt = setInterval(() => this.forceScreenUpdate(), 10000);
     }
 
     componentWillUnmount() {
