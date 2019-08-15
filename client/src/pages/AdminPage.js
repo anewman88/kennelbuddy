@@ -74,7 +74,7 @@ class AdminPage extends Component {
                             <th scope="col">Low/High Limits</th>
                             <th scope="col">Low/High Range</th>
                             <th scope="col">Deactivate</th>
-                            <th scope="col">User Info</th>
+                            <th scope="col">Owner Info</th>
                             <th scope="col">Delete</th>
                             </tr>
                         </thead>
